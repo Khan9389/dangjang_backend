@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import com.semi.dangjang.board.domain.BoardDto;
 import com.semi.dangjang.board.repository.BoardDao;
 
-
-
-
 @Service("boardService")
 public class BoardServiceImpl implements BoardService{
 
@@ -19,44 +16,32 @@ public class BoardServiceImpl implements BoardService{
 	BoardDao dao;
 	@Override
 	public List<BoardDto> getList(BoardDto dto) {
-		// TODO Auto-generated method stub
 		return dao.getList(dto);
 	}
 
 	@Override
-	public BoardDto getView(long id) {
-		// TODO Auto-generated method stub
-		return dao.getView(id);
+	public BoardDto getView(long board_seq) {
+		return dao.getView(board_seq);
 	}
 
 	@Override
 	public void insert(BoardDto dto) {
 		dao.insert(dto);
-		
 	}
 
 	@Override
 	public int getTotalCnt(BoardDto dto) {
-		// TODO Auto-generated method stub
 		return dao.getTotalCnt(dto);
 	}
 
 	@Override
 	public void update(BoardDto dto) {
 		dao.update(dto);
-		
 	}
 
 	@Override
 	public void delete(BoardDto dto) {
 		dao.delete(dto);
-		
 	}
 	
 }
-
-
-
-
-
-

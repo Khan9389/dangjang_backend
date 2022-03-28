@@ -9,62 +9,42 @@ import org.springframework.stereotype.Repository;
 
 import com.semi.dangjang.board.domain.BoardDto;
 
-
-
-
-
 @Repository("boardDao")
 public class BoardDaoImpl implements BoardDao{
 
 	List<BoardDto> list = new ArrayList<BoardDto>();
-	
-	
-	
 	
 	@Autowired
 	SqlSessionTemplate sm;
 	
 	@Override
 	public List<BoardDto> getList(BoardDto dto) {
-		
 		return sm.selectList("Board_getList", dto);
 	}
 
 	@Override
-	public BoardDto getView(long id) {
-		return sm.selectOne("Board_getView",  id);
+	public BoardDto getView(long board_seq) {
+		return sm.selectOne("Board_getView",  board_seq);
 	}
 
 	@Override
 	public void insert(BoardDto dto) {
-
 		sm.insert("Board_insert", dto);
 	}
 
 	@Override
 	public int getTotalCnt(BoardDto dto) {
-		
 		return sm.selectOne("Board_getTotal", dto);
 	}
 
 	@Override
 	public void update(BoardDto dto) {
 		sm.update("Board_update", dto);
-		
 	}
-
+	
 	@Override
 	public void delete(BoardDto dto) {
 		sm.delete("Board_delete", dto);
-		
 	}
 
-	
-
 }
-
-
-
-
-
-

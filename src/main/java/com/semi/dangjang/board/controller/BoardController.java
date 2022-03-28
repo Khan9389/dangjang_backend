@@ -24,13 +24,11 @@ import com.semi.dangjang.board.service.BoardService;
 import com.semi.dangjang.common.FileDownload;
 import com.semi.dangjang.common.FileUploadUtil;
 
-
-
-@CrossOrigin("*") //http:127.0.0.1 혹은 localhost
-@RestController	//jsp를 호출하지 않고 json형태로 데이터를 보낸다.
+@CrossOrigin("*") 
+@RestController	
 public class BoardController {
 	
-	@Value("${fileUploadPath}")	//src/main/resources/application.properties 의 값을 업로드 한다.
+	@Value("${fileUploadPath}")	
 	String fileUploadPath;
 	
 	@Value("${domain}")
@@ -40,10 +38,9 @@ public class BoardController {
 	BoardService boardService;
 	
 	
-	@RequestMapping("/board/list/{pg}")	//board/list/1
+	@RequestMapping("/board/list/{pg}")	
 	HashMap<String, Object> getList(@PathVariable("pg")int pg, BoardDto dto)
 	{
-		//System.out.println("curpage  " + pg);
 		dto.setStart((pg-1)*dto.getPageSize());
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("totalCnt", boardService.getTotalCnt(dto));
@@ -53,35 +50,28 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping("/board/view/{id}")
-	BoardDto getView(@PathVariable("id")long id)
+	@RequestMapping("/board/view/{board_seq}")
+	BoardDto getView(@PathVariable("board_seq")long board_seq)
 	{		
-		return	boardService.getView(id);
+		return	boardService.getView(board_seq);
 	}
 	
-	// Map -> HashMap의 추상클래스  -- aixos 가 json 으로 보내는데 json 받으려면 
-	//@RequestBody  가 있어야 한다 
 	@RequestMapping("/board/insert")
 	Map<String, String> insert(MultipartFile file ,  BoardDto dto, HttpServletRequest req)
 	{		
 		System.out.println(dto.getTitle());
-		System.out.println(dto.getWriter());
-		System.out.println(dto.getContents());
+		System.out.println(dto.getUser_id());
+		System.out.println(dto.getContent());
 		
-		//fileupload/image에 만든다.
-		String uploadDir = fileUploadPath+ "/image" ;	//파일이 업로드 될 경로
-		
-		//http://localhost:9090/fileupload/image/1582531436.jpeg
+		String uploadDir = fileUploadPath+ "/image" ;
+
 		if(file!=null)
 		{
 			try {
-				//파일을 주면 업로드하면서 새로운 파일명을 반환한다. 파일명이 중복될 수 있기 때문이다.
 				String filename=FileUploadUtil.upload(uploadDir, file);
-				dto.setFilename(filename);
-				dto.setImage_url(domain +"/"+ uploadDir + "/"+ filename);
+				dto.setImage1(domain +"/"+ uploadDir + "/"+ filename);
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -101,11 +91,11 @@ public class BoardController {
         
     }
 
-    @RequestMapping("/board/delete/{id}")
-	Map<String, String> delete(@PathVariable("id")long id, HttpServletRequest req)
+    @RequestMapping("/board/delete/{board_seq}")
+	Map<String, String> delete(@PathVariable("board_seq")long board_seq, HttpServletRequest req)
 	{		
 		BoardDto dto=new BoardDto();
-		dto.setId(id);
+		dto.setBoard_seq(board_seq);
 		boardService.delete(dto);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("result", "success");
@@ -117,27 +107,21 @@ public class BoardController {
    	Map<String, String> update(MultipartFile file ,  BoardDto dto, HttpServletRequest req)
    	{		
    		System.out.println(dto.getTitle());
-   		System.out.println(dto.getWriter());
-   		System.out.println(dto.getContents());
-
-   		
+   		System.out.println(dto.getUser_id());
+   		System.out.println(dto.getContent());
    		
    		String uploadDir = fileUploadPath+ "/image" ;
    		
-   		//http://localhost:9090/user-photos/image/1582531436.jpeg
    		if(file!=null)
    		{
    			try {
    				String filename=FileUploadUtil.upload(uploadDir, file);
-   				dto.setFilename(filename);
-   				dto.setImage_url(domain +"/"+ uploadDir + "/"+ filename);
+   				dto.setImage1(domain +"/"+ uploadDir + "/"+ filename);
    				
    			} catch (IOException e) {
    				e.printStackTrace();
    			}
    		}
-   		
-   		//System.out.println("**********************************    "  +  dto.getId());
    		
    		boardService.update(dto);
    		Map<String, String> map = new HashMap<String, String>();
@@ -146,9 +130,3 @@ public class BoardController {
    	}
     
 }
-
-
-
-
-
-
