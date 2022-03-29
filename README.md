@@ -4,3 +4,16 @@
 
 - 여러분 형식을 정해서 리드미 파일에 기록을 남기는게 어떨까요
 - [용환] .gitignore 추가(깃 크라켄에 잡다한 파일 stage되지 않게 수정) 22-03-29
+
+[혁주] 당장마켓 DB 생성 쿼리문 작성 #14 (21.03.27)
+당장마켓 DB 생성 쿼리문 작성 및 application properties mysql 경로 수정
+
+[혁주] 당장마켓 board 수정중 #15 (21.03.28)
+board.xml 작성
+board 관련 package 수정
+commonconst file upload 경로 수정
+application.properties 를 통한 url 경로 수정
+
+[혁주] 당장마켓 board controller #16 (21.03.29)
+boardController list/write/view/delete/update 작성
+board.xml 수정

@@ -14,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUploadUtil {
 	 
-
-
 	public static String getFileName(String contextPath , String orifilename)
 	{
 		String filePath = contextPath ;
@@ -77,7 +75,6 @@ public class FileUploadUtil {
 		File file = new File(filePath);
 		if( !file.exists())
 		{
-
 			file.mkdir();
 		}
 		
@@ -87,7 +84,7 @@ public class FileUploadUtil {
 		{
 			 for(MultipartFile multipartFile : fileList)
 			 {		
-				 if( multipartFile.getOriginalFilename().length()==0)//�뙆�씪�씠 �뾾�떎  
+				 if( multipartFile.getOriginalFilename().length()==0)
 					   break;
 				
 				 
