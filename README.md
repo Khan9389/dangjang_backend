@@ -17,3 +17,7 @@
 - [혁주] 당장마켓 board controller #18 (21.03.29)
     boardController list/write/view/delete/update 작성
     board.xml 수정
+
+- [혁주] 당장마켓 파일업로드 경로수정 #19 (22.03.30)
+    application.properties 를 통한 파일업로드 경로 수정  
+    board.xml 쿼리문 수정
