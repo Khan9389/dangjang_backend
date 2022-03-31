@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="Search">
+<select id="listPage" parameterType="SearchDto"  resultType="SearchDto">
+       select 
+			board_seq
+			, category_code
+			, title
+			, (select user_id from user where b.user_seq = user.user_seq) user_id
+			, user_seq
+		from board b  
+		<if test="!keyword.equals('') and keyword!=null">
+			where title like concat('%', #{keyword}, '%') or
+			content like concat('%',#{keyword}, '%') or
+			user_seq = (select user_seq from user where user.user_id like concat('%', #{keyword}, '%'))
+		</if> 
+		order by board_seq desc
+		limit #{start}, #{pageSize}
+      </select>
+      
+ 
+</mapper>

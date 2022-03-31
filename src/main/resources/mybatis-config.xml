@@ -7,9 +7,11 @@
         <!-- package name="com.example.demo"/-->
         
         <typeAlias alias="BoardDto" type="com.semi.dangjang.board.domain.BoardDto"/>
+        <typeAlias alias="SearchDto" type="com.semi.dangjang.search.domain.SearchDto"/>
     </typeAliases>
     
     <mappers>   
         <mapper resource="mappers/Board.xml"/>
+        <mapper resource="mappers/Search.xml"/>
     </mappers>
 </configuration>
