@@ -104,6 +104,7 @@ public class BoardController {
 				}
 			}
 		}
+		
 		boardService.insert(dto);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("result", "success");

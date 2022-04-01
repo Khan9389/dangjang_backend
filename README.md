@@ -18,9 +18,20 @@
 - [혁주] 당장마켓 board controller #18 (21.03.29)
     boardController list/write/view/delete/update 작성
     board.xml 수정
+<<<<<<< HEAD
     
 - [정진] search package 작성(22.03.31 PM 3:50)
     
     SearchController list 작성
     
     search.xml 작성 및 수정, (팀원들의 검토 필요해요!)
+=======
+
+- [혁주] 당장마켓 파일업로드 경로수정 #19 (22.03.30)
+    application.properties 를 통한 파일업로드 경로 수정  
+    board.xml 쿼리문 수정
+
+- [용환] 당장마켓 왁자지껄 crud 구축 #20 (22.04.01)
+    freeboardController list/write/view/delete/update 작성
+    freeboard.xml 작성       
+>>>>>>> main

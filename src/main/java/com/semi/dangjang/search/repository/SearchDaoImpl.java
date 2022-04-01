@@ -11,6 +11,7 @@ import com.semi.dangjang.search.domain.SearchDto;
 @Repository("searchDao")
 public class SearchDaoImpl implements SearchDao{
 	
+	
 	@Autowired
 	SqlSessionTemplate sm;
 	

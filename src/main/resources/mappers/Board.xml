@@ -13,7 +13,7 @@
  		
 		select
 			board_seq
-		    ,(select category_code from category C where C.category_code = B.category_code) as category_code
+		    ,(select category_name from category C where C.category_code = B.category_code) as category_name
 		    ,title
 		    ,content
 		    ,image1 ,image2 ,image3 ,image4 ,image5 ,image6
@@ -84,7 +84,7 @@
 	<select id="Board_getView"  parameterType="Long"  resultType="BoardDto">
  		select
 			board_seq
-		    ,(select category_code from category C where C.category_code = B.category_code) as category_code
+		    ,(select category_name from category C where C.category_code = B.category_code) as category_name
 		    ,title
 		    ,content
 		    ,image1 ,image2 ,image3 ,image4 ,image5 ,image6

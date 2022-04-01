@@ -17,6 +17,7 @@
 			content like concat('%',#{keyword}, '%') or
 			user_seq = (select user_seq from user where user.user_id like concat('%', #{keyword}, '%'))
 		</if> 
+		
 		order by board_seq desc
 		limit #{start}, #{pageSize}
       </select>

@@ -11,6 +11,7 @@ import com.semi.dangjang.search.repository.SearchDao;
 
 @Service("searchService")
 public class SearchServiceImpl implements SearchService{
+	
 	@Resource(name="searchDao")
 	SearchDao searchDao;
 
