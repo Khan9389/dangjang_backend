@@ -21,3 +21,7 @@
 - [혁주] 당장마켓 파일업로드 경로수정 #19 (22.03.30)
     application.properties 를 통한 파일업로드 경로 수정  
     board.xml 쿼리문 수정
+
+- [용환] 당장마켓 왁자지껄 crud 구축 #20 (22.04.01)
+    freeboardController list/write/view/delete/update 작성
+    freeboard.xml 작성       
