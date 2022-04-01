@@ -20,21 +20,21 @@
  			,content
  			,image
  			,wdate
- 			,rnum
  		from 
+ 			,rnum
  		(
 	 		select
 				A.free_seq
 				,A.title
 				,A.content
 				,A.image
-				,A.user_id
 				,A.wdate
-			    ,@rownum := @rownum+1 AS rnum
+				,A.user_id
 				from freeboard A, (select @rownum:=0) R
-				
+			    ,@rownum := @rownum+1 AS rnum
 				
 			<if test='key!=null and keyword!=null'>
+				
 	
 				<if test='key=="1"'>
 				where title like concat('%', #{keyword} , '%') or
