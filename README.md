@@ -18,10 +18,9 @@
 - [혁주] 당장마켓 board controller #18 (21.03.29)
     boardController list/write/view/delete/update 작성
     board.xml 수정
-<<<<<<< HEAD
-    
+
 - [정진] search package 작성(22.03.31 PM 3:50)
-    
+  
     SearchController list 작성
     
     search.xml 작성 및 수정, (팀원들의 검토 필요해요!)
@@ -33,5 +32,7 @@
 
 - [용환] 당장마켓 왁자지껄 crud 구축 #20 (22.04.01)
     freeboardController list/write/view/delete/update 작성
-    freeboard.xml 작성       
->>>>>>> main
+    freeboard.xml 작성     
+    
+- [한우] qna 백앤드 crud 구축  
+
