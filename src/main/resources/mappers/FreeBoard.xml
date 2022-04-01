@@ -11,112 +11,127 @@
 	     
 	<!-- if test="key=='1'"  - 이렇게 쓰면 안된다 인식안된다 -->
 	
-	<select id="FreeBoard_getList"  parameterType="FreeBoardDto"  
-	                                resultType="FreeBoardDto">
+	<select id="FreeBoard_getList"  parameterType="FreeBoardDto"  resultType="FreeBoardDto">
  		
- 	select * from
-	(
-	        select
-			seq
-			,userid
-			,title
-			,contents   
-			,ifnull(hit , 0) hit      
-			,group_id
-			,depth
-			,g_level
-			,regdate
-		from free_board 
-		order by group_id desc, g_level asc 
-	)A limit #{start}, #{pageSize} 
+ 		select 
+ 			free_seq
+ 			,title
+ 			,(select user_id from user B where B.userid=A.user_id) as user_id
+ 			,content
+ 			,image
+ 			,wdate
+ 			,rnum
+ 		from 
+ 		(
+	 		select
+				A.free_seq
+				,A.title
+				,A.content
+				,A.image
+				,A.user_id
+				,A.wdate
+			    ,@rownum := @rownum+1 AS rnum
+				from freeboard A, (select @rownum:=0) R
+				
+				
+			<if test='key!=null and keyword!=null'>
 	
+				<if test='key=="1"'>
+				where title like concat('%', #{keyword} , '%') or
+				      contents like concat('%', #{keyword} , '%') or 
+				      writer like concat('%', #{keyword} , '%') 
+				</if>
+				
+				<if test='key=="2"'>
+				where title like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="3"'>
+				where contents like concat('%', #{keyword} , '%')
+				</if>
+				
+				<if test='key=="4"'>
+				where title like concat('%', #{keyword} , '%') or
+				      contents like concat('%', #{keyword} , '%') 
+				</if>
+				
+			</if> 
+			
+			order by free_seq desc
+		) A
+		limit #{start}, #{pageSize}    
 	</select>
+	<!--  
+		paging  쿼리는  dbms마다 다르다 
+		
+		select ~~  limit 시작위치, 개수
 	
-	<select id="FreeBoard_getTotal"  parameterType="FreeBoardDto"  
-	                                resultType="Integer">
- 		
- 	select count(*) from free_board	
+	 -->
+	 
+	<!--   페이징때문에 전체 레코드 개수를 알아오기 위한 쿼리가 필요한다  -->
+	
+	<select id="FreeBoard_getTotal" parameterType="FreeBoardDto" resultType="Integer">
+		select count(*) from freeboard 
+		<if test='key!=null and keyword!=null'>
+
+			<if test='key=="1"'>
+			where title like concat('%', #{keyword} , '%') or
+			      contents like concat('%', #{keyword} , '%') or 
+			      writer like concat('%', #{keyword} , '%') 
+			</if>
+			
+			<if test='key=="2"'>
+			where title like concat('%', #{keyword} , '%')
+			</if>
+			
+			<if test='key=="3"'>
+			where contents like concat('%', #{keyword} , '%')
+			</if>
+			
+			<if test='key=="4"'>
+			where title like concat('%', #{keyword} , '%') or
+			      contents like concat('%', #{keyword} , '%') 
+			</if>
+			
+		</if> 
+		
 	</select>
+
 	
-	<select id="FreeBoard_getView"  parameterType="FreeBoardDto"  
-	                                resultType="FreeBoardDto">
-	  select
-			seq
-			,userid
-			,title
-			,contents   
-			,ifnull(hit , 0) hit      
-			,group_id
-			,depth
-			,g_level
-			,regdate
-		from free_board where seq=#{seq}
-	</select>
-	
-	<insert id="FreeBoard_insert"  parameterType="FreeBoardDto"  >
-		<selectKey resultType="String" keyProperty="seq" order="BEFORE">
-		select ifnull(max(seq),0)+1 as seq 
-		from free_board
-		</selectKey>
-		insert into free_board(
-			seq
-			,title
-			,userid
-			,contents
-			,regdate
-			,hit
-			,group_id
-			,depth
-			,g_level
-		)
-		values(
-			#{seq}
-			,#{title}
-			,#{userid}
-			,#{contents}
-			,now()
-			,0
-			,#{seq}
-			,0
-			,1	
-		)
+	<insert id="Board_insert" parameterType="FreeBoardDto">
+		insert into freeboard
+		( title, user_id, content, wdate, filename, image_url)
+		values
+		(#{title}, #{user_id}, #{content}, now(), #{filename}, #{image_url})
 	</insert>
 	
+	<select id="Board_getView"  parameterType="Long"  resultType="FreeBoardDto">
+ 		select
+			A.free_seq
+			,A.title
+			,A.content
+			,(select user_id from user B where B.user_id = A.user_id) as user_id 
+			,A.wdate
+			,ifnull(filename, '') filename
+			,ifnull(image_url, '') image_url
+		from freeboard A where free_seq=#{free_seq}
+
+	</select>
 	
-	<insert id="FreeBoard_reply"  parameterType="FreeBoardDto"  >
-		<selectKey resultType="String" keyProperty="seq" order="BEFORE">
-		select ifnull(max(seq),0)+1 as seq 
-		from free_board
-		</selectKey>
-		insert into free_board(
-			seq
-			,title
-			,userid
-			,contents
-			,regdate
-			,hit
-			,group_id
-			,depth
-			,g_level
-		)
-		values(
-			#{seq}
-			,#{title}
-			,#{userid}
-			,#{contents}
-			,now()
-			,0
-			,#{group_id}   --  부모것을 가져온다 
-			,#{depth}+1
-			,#{g_level}+1	
-		)
-	</insert>
+	<delete id="FreeBoard_delete" parameterType="FreeBoardDto" >
+	delete from freeboard where free_seq=#{free_seq}
+	</delete>
 	
-	<update id="FreeBoard_updateLevel" parameterType="FreeBoardDto">
-	update free_board set g_level=g_level+1 
-	where group_id=#{group_id} and g_level>#{g_level}     
+	
+	<update id="FreeBoard_update" parameterType="FreeBoardDto" >
+	update freeboard 
+		set title = #{title}
+			,user_id = #{user_id}
+			,content = #{content}
+			,filename = #{filename}
+			,image_url = #{image_url}
+	where  id=#{id}
 	</update>
-	
 		
 </mapper>
 

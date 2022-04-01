@@ -7,9 +7,13 @@
         <!-- package name="com.example.demo"/-->
         
         <typeAlias alias="BoardDto" type="com.semi.dangjang.board.domain.BoardDto"/>
+        <typeAlias alias="FreeBoardDto" type="com.semi.dangjang.freeboard.domain.FreeBoardDto"/>
+        <typeAlias alias="FBCommentDto" type="com.semi.dangjang.comment.domain.FBCommentDto"/>
     </typeAliases>
     
     <mappers>   
         <mapper resource="mappers/Board.xml"/>
+        <mapper resource="mappers/FreeBoard.xml"/>
+        <mapper resource="mappers/FBComment.xml"/>
     </mappers>
 </configuration>
