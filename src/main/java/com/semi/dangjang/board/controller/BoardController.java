@@ -1,6 +1,5 @@
 package com.semi.dangjang.board.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +22,7 @@ import com.semi.dangjang.board.domain.BoardDto;
 import com.semi.dangjang.board.service.BoardService;
 import com.semi.dangjang.common.FileDownload;
 import com.semi.dangjang.common.FileUploadUtil;
+import com.semi.dangjang.zzim.*;
 
 @CrossOrigin("*") //모든 정책을 허용한다는 의미. 부트는 9090과 리액트의 3000을 연결하려고 하면 출처가 달라서 요청을 주고받을 수 없다.
 				  //cross origin을 통해 리액트랑 부트를 연동시켜준다.
@@ -44,6 +43,8 @@ public class BoardController {
 	@Resource(name="boardService")
 	BoardService boardService;
 	
+	@Resource(name="zzimService")
+	ZzimService zzimService;
 	
 	@RequestMapping("/board/list/{pg}")	
 	HashMap<String, Object> getList(@PathVariable("pg")int pg, BoardDto dto)
@@ -104,7 +105,7 @@ public class BoardController {
 				}
 			}
 		}
-		
+		System.out.println("--------->"+dto);
 		boardService.insert(dto);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("result", "success");
