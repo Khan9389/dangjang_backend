@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="zzim">
+	<insert id="Zzim_insert" parameterType="BoardDto">
+		insert ignore into zzim
+		(user_seq, board_seq, zzim)
+		values
+		(#{user_seq}, #{board_seq}, #{zzim})
+	</insert>
+	<delete id="Zzim_delete" parameterType="BoardDto">
+		delete from zzim where board_seq=#{board_seq} and user_seq = #{user_seq};
+	</delete>
+</mapper>

@@ -36,3 +36,6 @@
     
 - [한우] qna 백앤드 crud 구축  
 
+- [혁주] 당장마켓 수정 #22 (22.04.04)
+    - zzim 관련 dao, impl, service, service impl, xml 생성
+    - board 관련 업로드 문제 수정
