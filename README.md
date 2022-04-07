@@ -39,3 +39,5 @@
 - [혁주] 당장마켓 수정 #22 (22.04.04)
     - zzim 관련 dao, impl, service, service impl, xml 생성
     - board 관련 업로드 문제 수정
+- [혁주] 당장마켓 리스트 수정 삭제 기능 추가 #23 (22.04.07)
+    - board dao, daoimpl, service, serviceimpl, xml, controller - totalCnt 부분 수정

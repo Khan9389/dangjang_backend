@@ -49,6 +49,7 @@ public class BoardController {
 	@RequestMapping("/board/list/{pg}")	
 	HashMap<String, Object> getList(@PathVariable("pg")int pg, BoardDto dto)
 	{
+		System.out.println("keyword---------------" + dto.getKeyword());
 		dto.setStart((pg-1)*dto.getPageSize());
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("totalCnt", boardService.getTotalCnt(dto));
@@ -181,6 +182,8 @@ public class BoardController {
 				}
 			}
 		}
+		
+		System.out.println(dto);
    		
    		boardService.update(dto);
    		Map<String, String> map = new HashMap<String, String>();

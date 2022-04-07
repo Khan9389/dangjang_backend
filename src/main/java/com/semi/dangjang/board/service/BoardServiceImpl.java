@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int getTotalCnt(BoardDto dto) {
+	public List<BoardDto> getTotalCnt(BoardDto dto) {
 		return dao.getTotalCnt(dto);
 	}
 

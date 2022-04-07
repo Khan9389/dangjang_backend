@@ -36,12 +36,13 @@ public class BoardDto extends BaseDto{
 	private String my_cnt = "";
 	private String nick_name = "";
 	private String address1 = "";
+	private String catCnt = "";
 	
 	@Builder
 	public BoardDto (long board_seq, String category_name, String title, String content, 
 			String image1, String image2, String image3, String image4, String image5, String image6,
 			String price, String user_id, String user_images, String zzim_cnt, String hit, String wdate, 
-			String category_code, String my_cnt, String nick_name, String address1, String user_seq) {
+			String category_code, String my_cnt, String nick_name, String address1, String user_seq, String catCnt) {
 		super();
 		this.board_seq = board_seq;
 		this.category_name = category_name;
@@ -64,6 +65,7 @@ public class BoardDto extends BaseDto{
 		this.nick_name = nick_name;
 		this.address1 = address1;
 		this.user_seq = user_seq;
+		this.catCnt = catCnt;
 	}
 	
 }
