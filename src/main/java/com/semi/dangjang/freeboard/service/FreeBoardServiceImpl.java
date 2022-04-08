@@ -30,9 +30,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 	}
 
 	@Override
-	public FreeBoardDto getView(String user_id) {
+	public FreeBoardDto getView(long free_seq) {
 		
-		return dao.getView(user_id);
+		return dao.getView(free_seq);
 	}
 
 	@Override

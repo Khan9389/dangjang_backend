@@ -11,11 +11,12 @@ import com.semi.dangjang.freeboard.domain.FreeBoardDto;
 
 public interface FreeBoardService {
 	List<FreeBoardDto> getList(FreeBoardDto dto);
-	FreeBoardDto getView(String user_id);
+	FreeBoardDto getView(long free_Seq);
 	void insert(FreeBoardDto dto);
 	int getTotalCnt(FreeBoardDto dto);
 	void update(FreeBoardDto dto);
 	void delete(FreeBoardDto dto);
+	
 	List<FBCommentDto> fbcommentList(FBCommentDto dto);
 	void fbcommentinsert(FBCommentDto dto);
 	int fbcommentTotal(FBCommentDto dto);

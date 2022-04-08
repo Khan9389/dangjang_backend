@@ -16,12 +16,13 @@
  		select 
  			free_seq
  			,title
- 			,(select user_id from user B where B.userid=A.user_id) as user_id
+ 			,(select user_id from user B where B.user_id=A.user_id) as user_id
  			,content
  			,image
  			,wdate
- 		from 
  			,rnum
+ 		from 
+ 			
  		(
 	 		select
 				A.free_seq
@@ -30,8 +31,8 @@
 				,A.image
 				,A.wdate
 				,A.user_id
-				from freeboard A, (select @rownum:=0) R
 			    ,@rownum := @rownum+1 AS rnum
+				from freeboard A, (select @rownum:=0) R
 				
 			<if test='key!=null and keyword!=null'>
 				
@@ -59,7 +60,7 @@
 			
 			order by free_seq desc
 		) A
-		limit #{start}, #{pageSize}    
+		
 	</select>
 	<!--  
 		paging  쿼리는  dbms마다 다르다 
@@ -98,14 +99,14 @@
 	</select>
 
 	
-	<insert id="Board_insert" parameterType="FreeBoardDto">
+	<insert id="FreeBoard_insert" parameterType="FreeBoardDto">
 		insert into freeboard
 		( title, user_id, content, wdate, filename, image_url)
 		values
 		(#{title}, #{user_id}, #{content}, now(), #{filename}, #{image_url})
 	</insert>
 	
-	<select id="Board_getView"  parameterType="Long"  resultType="FreeBoardDto">
+	<select id="FreeBoard_getView"  parameterType="Long"  resultType="FreeBoardDto">
  		select
 			A.free_seq
 			,A.title

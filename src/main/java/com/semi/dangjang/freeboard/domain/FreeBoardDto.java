@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor(access=AccessLevel.PUBLIC)  //기본생성자를 만들어준다 
 public class FreeBoardDto extends BaseDto{
 	    
-	private String free_seq="";
+	private long free_seq=-1;
 	private String user_id="";
 	private String title="";
 	private String content="";
@@ -22,11 +22,9 @@ public class FreeBoardDto extends BaseDto{
 	private String like_cnt="";
 	private String hit="";
 	private String user_seq="";
-	private String filename="";
-	private String image_url="";
 	
 	@Builder
-	public FreeBoardDto(String free_seq, String user_id, String title, String content, String image, String wdate,
+	public FreeBoardDto(long free_seq, String user_id, String title, String content, String image, String wdate,
 			String like_cnt, String hit, String user_seq) {
 		super();
 		this.free_seq = free_seq;
@@ -38,8 +36,6 @@ public class FreeBoardDto extends BaseDto{
 		this.like_cnt = like_cnt;
 		this.hit = hit;
 		this.user_seq = user_seq;
-		this.filename = filename;
-		this.image_url = image_url;
 	}
 	
 	
