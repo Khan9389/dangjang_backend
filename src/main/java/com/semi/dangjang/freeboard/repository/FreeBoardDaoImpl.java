@@ -36,9 +36,9 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 
 
 	@Override
-	public FreeBoardDto getView(String user_id) {
+	public FreeBoardDto getView(long free_seq) {
 		
-		return sm.selectOne("FreeBoard_getView",  user_id);
+		return sm.selectOne("FreeBoard_getView",  free_seq);
 	}
 
 

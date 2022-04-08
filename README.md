@@ -41,3 +41,6 @@
     - board 관련 업로드 문제 수정
 - [혁주] 당장마켓 리스트 수정 삭제 기능 추가 #23 (22.04.07)
     - board dao, daoimpl, service, serviceimpl, xml, controller - totalCnt 부분 수정
+
+- [용환] 당장마켓 왁자지껄 수정 #24 (22.04.09)
+    -  board dao, daoimpl, service, serviceimpl, xml, controller 수정

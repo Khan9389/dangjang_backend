@@ -40,7 +40,7 @@ public class FreeBoardController {
 	FreeBoardService freeboardService;
 	
 	
-	@RequestMapping("/freeboard/list/{pg}")	//board/list/1
+	@RequestMapping("/freeboard/list/{pg}")	//freeboard/list/1
 	HashMap<String, Object> getList(@PathVariable("pg")int pg, FreeBoardDto dto)
 	{
 		//System.out.println("curpage  " + pg);
@@ -54,7 +54,7 @@ public class FreeBoardController {
 	
 	
 	@RequestMapping("/freeboard/view/{free_seq}")
-	FreeBoardDto getView(@PathVariable("free_seq")String free_seq)
+	FreeBoardDto getView(@PathVariable("free_seq")long free_seq)
 	{		
 		return	freeboardService.getView(free_seq);
 	}
@@ -77,8 +77,8 @@ public class FreeBoardController {
 			try {
 				//파일을 주면 업로드하면서 새로운 파일명을 반환한다. 파일명이 중복될 수 있기 때문이다.
 				String filename=FileUploadUtil.upload(uploadDir, file);
-				dto.setFilename(filename);
-				dto.setImage_url(domain +"/"+ uploadDir + "/"+ filename);
+				//dto.setFilename(filename);
+				//dto.setImage(domain +"/"+ uploadDir + "/"+ filename);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -101,11 +101,11 @@ public class FreeBoardController {
 //        
 //    }
 
-    @RequestMapping("/freeboard/delete/{id}")
-	Map<String, String> delete(@PathVariable("user_id")String user_id, HttpServletRequest req)
+    @RequestMapping("/freeboard/delete/{free_seq}")
+	Map<String, String> delete(@PathVariable("free_seq")long free_seq, HttpServletRequest req)
 	{		
 		FreeBoardDto dto=new FreeBoardDto();
-		dto.setUser_id(user_id);
+		dto.setFree_seq(free_seq);
 		freeboardService.delete(dto);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("result", "success");
@@ -129,9 +129,9 @@ public class FreeBoardController {
    		{
    			try {
    				String filename=FileUploadUtil.upload(uploadDir, file);
-   				dto.setFilename(filename);
-   				dto.setImage_url(domain +"/"+ uploadDir + "/"+ filename);
-   				
+   		//		dto.setFilename(filename);
+   		//		dto.setImage_url(domain +"/"+ uploadDir + "/"+ filename);
+   		//		
    			} catch (IOException e) {
    				e.printStackTrace();
    			}
@@ -144,6 +144,8 @@ public class FreeBoardController {
    		map.put("result", "success");
    		return map;
    	}
+    
+    
     
 }
 
