@@ -12,6 +12,7 @@
         <typeAlias alias="FBCommentDto" type="com.semi.dangjang.comment.domain.FBCommentDto"/>
         <typeAlias alias="QnaDto" type="com.semi.dangjang.qna.domain.QnaDto"/>
           <typeAlias alias="MessageBoxDto" type="com.semi.dangjang.box.domain.MessageBoxDto"/>
+          <typeAlias alias="MemberDto" type="com.semi.dangjang.member2.MemberDto"/>
     </typeAliases>
     
     <mappers>   
@@ -21,6 +22,7 @@
         <mapper resource="mappers/FreeBoard.xml"/>
         <mapper resource="mappers/FBComment.xml"/>
         <mapper resource="mappers/MessageBox.xml"/>
+         <mapper resource="mappers/Member.xml"/>
         
     </mappers>
 </configuration>
