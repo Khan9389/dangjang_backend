@@ -44,3 +44,6 @@
 
 - [용환] 당장마켓 왁자지껄 수정 #24 (22.04.09)
     -  board dao, daoimpl, service, serviceimpl, xml, controller 수정
+
+- [혁주] board.xml 파일 수정 #26 (22.04.10)
+    - 이미지 확대기능을 위한 board.xml 수정

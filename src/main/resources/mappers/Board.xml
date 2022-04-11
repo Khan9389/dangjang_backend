@@ -61,8 +61,13 @@
 	<!--   페이징때문에 전체 레코드 개수를 알아오기 위한 쿼리가 필요한다  -->
 	
 	<select id="Board_getTotal" parameterType="BoardDto" resultType="BoardDto">
-		select category_code, (select category_name from category C where C.category_code = B.category_code) as category_name , count(category_code) as catCnt 
-		from board B group by CATEGORY_CODE;
+		select category_code, (select category_name from category C where C.category_code = B.category_code) as category_name , 
+        count(category_code) as catCnt
+		from board B group by CATEGORY_CODE
+        union
+        select '00' as category_code, '전체' as category_name, count(category_code) as catCnt
+        from board B
+        order by category_code asc;
 	</select>
 
 	<insert id="Board_insert" parameterType="BoardDto">
