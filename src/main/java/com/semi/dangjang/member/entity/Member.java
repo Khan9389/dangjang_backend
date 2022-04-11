@@ -71,8 +71,8 @@ public class Member {
 		member.setZipcode(memberFormDto.getZipcode());
 		member.setImages(memberFormDto.getImages());
 		member.setWdate(LocalDateTime.now().toString());
-		String password = passwordEncoder.encode(memberFormDto.getPassword());
-		member.setPassword(password);
+		//String password = passwordEncoder.encode(memberFormDto.getPassword());
+		member.setPassword(memberFormDto.getPassword());
 		member.setImages(memberFormDto.getImages());
 		if(memberFormDto.getAdmincode().equals("1111"))
         	member.setRole(Role.ADMIN);

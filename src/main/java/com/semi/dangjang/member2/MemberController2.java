@@ -1,19 +1,30 @@
 package com.semi.dangjang.member2;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.semi.dangjang.common.FileUploadUtil;
 
 @CrossOrigin("*")
 @RestController
 public class MemberController2 {
+	
+	@Value("${fileUploadPath}")
+	String fileUploadPath;
+
+	@Value("${domain}")
+	String domain;
 	
 	@Resource(name="memberService2")
 	MemberService2 memberService;
@@ -83,13 +94,34 @@ public class MemberController2 {
 	{	
 		// 패스워드 변경하는 코드 추가할것
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("result", "fail");
+		MemberDto findDto = memberService.findPassword(dto);
+		
+		if (findDto==null)
+			map.put("result", "fail");
+		else
+		{
+			map.put("result", "success");
+			map.put("userid", findDto.getUserid());
+			map.put("password", findDto.getPassword());
+		}
 		return map;
 	}
 	
 	@RequestMapping(value="/member/update")
-	public HashMap<String, String> member_update(MemberDto dto)
+	public HashMap<String, String> member_update(MultipartFile file, MemberDto dto)
 	{	
+
+		if(file!=null && !file.getOriginalFilename().isBlank()) {		
+			String uploadDir = fileUploadPath + "/image";
+			if (file != null) {
+				try {
+					String filename = FileUploadUtil.upload(uploadDir, file);
+					dto.setImages(domain + "/" + uploadDir + "/" + filename);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		memberService.update(dto);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "success");	

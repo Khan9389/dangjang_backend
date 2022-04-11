@@ -34,16 +34,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	/*
+	 * @Bean public PasswordEncoder passwordEncoder() { return new
+	 * BCryptPasswordEncoder(); }
+	 */
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(memberService)
-                .passwordEncoder(passwordEncoder());
-
+		/*
+		 * auth.userDetailsService(memberService) .passwordEncoder(passwordEncoder());
+		 */
 		auth.inMemoryAuthentication().withUser("postman").password("{noop}postman").roles("USER");
 	}
 

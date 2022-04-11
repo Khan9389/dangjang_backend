@@ -59,13 +59,17 @@
 
 	<select id="Member_findpassword" parameterType="MemberDto"
 		resultType="MemberDto">
-		
+		select 	
+			A.userid
+			,A.password
+		from member A
+		where email=#{email} and userid=#{userid} 
 	</select>
 
 	<update id="Member_updateInfo" parameterType="MemberDto">
 		update
 		member set
-		,email=#{email}
+		email=#{email}
 		,phone=#{phone}
 		,address1=#{address1}
 		,address2 = #{address2}

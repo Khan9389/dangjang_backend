@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,14 +44,14 @@ public class MemberController {
 	@Autowired
 	MemberService memberSevice;
 	
-	private final PasswordEncoder passwordEncoder;
+	//private final PasswordEncoder passwordEncoder;
 
 	@PostMapping(value = "/insert")
 	public HashMap<String, String> newMember(MultipartFile file,@Valid MemberFormDto memberFormDto, 
 			BindingResult bindingResult, Model model) {
 		System.out.println(memberFormDto);
 
-		if(!file.getOriginalFilename().isBlank()) {		
+		if(file!=null && !file.getOriginalFilename().isBlank()) {		
 			String uploadDir = fileUploadPath + "/image";
 			if (file != null) {
 				try {
@@ -68,7 +68,7 @@ public class MemberController {
 		}
 
 		try {
-			Member member = Member.createMember(memberFormDto, passwordEncoder);
+			Member member = Member.createMember(memberFormDto, null);
 			memberSevice.saveMember(member);
 			map.put("result", "success");
 		} catch (IllegalStateException e) {
