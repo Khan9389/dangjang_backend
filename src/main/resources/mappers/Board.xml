@@ -18,10 +18,10 @@
 		    ,content
 		    ,image1 ,image2 ,image3 ,image4 ,image5 ,image6
 		    ,price
-		    ,(select user_id from user U where U.user_id = B.user_id) as user_id
+		    ,(select user_id from member M where M.userid = B.user_id) as user_id
 		    ,(select sum(zzim) from zzim Z where Z.board_seq=B.board_seq) as zzim_cnt
 		    ,hit
-		    ,(select images from user U where U.user_seq = B.user_seq) as user_images
+		    ,(select images from member M where M.user_seq = B.user_seq) as user_images
 		    ,wdate
 		    ,rnum
 		from
@@ -90,13 +90,13 @@
 		    ,content
 		    ,image1 ,image2 ,image3 ,image4 ,image5 ,image6
 		    ,price
-		    ,(select user_id from user U where U.user_id = B.user_id) as user_id
-		    ,(select nick_name from user U where U.user_id = B.user_id) as nick_name
-		    ,(select address1 from user U where U.user_id = B.user_id) as address1
+		    ,(select user_id from member M where M.userid = B.user_id) as user_id
+		    ,(select nick_name from member M where M.userid = B.user_id) as nick_name
+		    ,(select address1 from member M where M.userid = B.user_id) as address1
 		    ,(select sum(zzim) from zzim Z where Z.board_seq=B.board_seq) as zzim_cnt
 		    ,(select count(*) from board B where B.user_seq = (select user_seq from board where board_seq = #{board_seq})) as my_cnt
 		    ,hit
-		    ,(select images from user U where U.user_seq = B.user_seq) as user_images
+		    ,(select images from member M where M.userid = B.user_id) as user_images
 		from board B where board_seq=#{board_seq}
 	</select>
 	

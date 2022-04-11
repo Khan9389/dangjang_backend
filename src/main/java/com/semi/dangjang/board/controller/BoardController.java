@@ -22,7 +22,6 @@ import com.semi.dangjang.board.domain.BoardDto;
 import com.semi.dangjang.board.service.BoardService;
 import com.semi.dangjang.common.FileDownload;
 import com.semi.dangjang.common.FileUploadUtil;
-import com.semi.dangjang.zzim.*;
 
 @CrossOrigin("*") //모든 정책을 허용한다는 의미. 부트는 9090과 리액트의 3000을 연결하려고 하면 출처가 달라서 요청을 주고받을 수 없다.
 				  //cross origin을 통해 리액트랑 부트를 연동시켜준다.
@@ -39,13 +38,9 @@ public class BoardController {
 	@Value("${domain}")			
 	String domain;
 	
-	
 	@Resource(name="boardService")
 	BoardService boardService;
-	
-	@Resource(name="zzimService")
-	ZzimService zzimService;
-	
+
 	@RequestMapping("/board/list/{pg}")	
 	HashMap<String, Object> getList(@PathVariable("pg")int pg, BoardDto dto)
 	{
@@ -75,7 +70,7 @@ public class BoardController {
 		System.out.println(dto.getTitle());
 		System.out.println(dto.getUser_id());
 		System.out.println(dto.getContent());
-		
+		System.out.println(dto.getUser_images());
 		String uploadDir = fileUploadPath+ "/image" ;
 		
 		for(int i=0; i<fileList.size(); i++ ) {
@@ -209,5 +204,5 @@ public class BoardController {
 		map.put("result", "success");
 		return map;
 	}
-    
+
 }

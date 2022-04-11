@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="zzim">
-	<insert id="Zzim_insert" parameterType="BoardDto">
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="Zzim">
+	<insert id="Zzim_insert" parameterType="ZzimDto">
 		insert ignore into zzim
 		(user_seq, board_seq, zzim)
 		values
 		(#{user_seq}, #{board_seq}, #{zzim})
 	</insert>
-	<delete id="Zzim_delete" parameterType="BoardDto">
+	<delete id="Zzim_delete" parameterType="ZzimDto">
 		delete from zzim where board_seq=#{board_seq} and user_seq = #{user_seq};
 	</delete>
 </mapper>

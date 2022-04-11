@@ -14,6 +14,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Resource(name="boardDao")
 	BoardDao dao;
+	
 	@Override
 	public List<BoardDto> getList(BoardDto dto) {
 		return dao.getList(dto);
