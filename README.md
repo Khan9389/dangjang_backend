@@ -53,3 +53,6 @@
 
 - [혁주] 찜기능 구현 완료 #28 (22.04.12)
     - zzim.xml / controller, dao, daoImpl, service, serviceImpl 구현 완료
+
+- [혁주] 깃 연동 오류 수정 #29 (22.04.12)
+    - 스프링시큐리티 부분 오류 수정

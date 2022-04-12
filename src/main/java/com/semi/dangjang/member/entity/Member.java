@@ -30,8 +30,8 @@ public class Member {
 
 	@Id
 	@Column(name = "user_seq")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
 	@Column(unique = true)
 	private String userid;
@@ -54,7 +54,8 @@ public class Member {
 	
 	private String images;
 
-	private String wdate;
+	
+	private LocalDateTime wdate;
 	
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -70,7 +71,7 @@ public class Member {
 		member.setAddress2(memberFormDto.getAddress2());
 		member.setZipcode(memberFormDto.getZipcode());
 		member.setImages(memberFormDto.getImages());
-		member.setWdate(LocalDateTime.now().toString());
+		member.setWdate(LocalDateTime.now());
 		//String password = passwordEncoder.encode(memberFormDto.getPassword());
 		member.setPassword(memberFormDto.getPassword());
 		member.setImages(memberFormDto.getImages());

@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		// ÀüºÎÇã¿ë
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		http.csrf().disable().authorizeRequests().mvcMatchers("/**", "/member/**", "/item/**", "/images/**", "/fileupload/**").permitAll()
 				.mvcMatchers("/admin/**").hasRole("ADMIN").anyRequest().authenticated();
 
