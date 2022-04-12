@@ -19,5 +19,10 @@ public class ZzimServiceImpl implements ZzimService{
 	public void delete(ZzimDto dto) {
 		dao.delete(dto);
 	}
+
+	@Override
+	public ZzimDto getView(ZzimDto dto) {
+		return dao.getView(dto);
+	}
 	
 }

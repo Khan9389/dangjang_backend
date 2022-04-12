@@ -25,4 +25,9 @@ public class ZzimDaoImpl implements ZzimDao{
 		sm.delete("Zzim.Zzim_delete", dto);
 	}
 
+	@Override
+	public ZzimDto getView(ZzimDto dto) {
+		return sm.selectOne("Zzim.Zzim_getView",  dto);
+	}
+
 }

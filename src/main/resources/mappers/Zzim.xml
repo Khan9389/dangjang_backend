@@ -11,6 +11,13 @@
 		(#{user_seq}, #{board_seq}, #{zzim})
 	</insert>
 	<delete id="Zzim_delete" parameterType="ZzimDto">
-		delete from zzim where board_seq=#{board_seq} and user_seq = #{user_seq};
+		delete from zzim where board_seq=#{board_seq} and user_seq = #{user_seq}
 	</delete>
+	
+	<select id="Zzim_getView"  parameterType="ZzimDto"  resultType="ZzimDto">
+ 		select
+			*
+		from zzim where board_seq=#{board_seq} and user_seq = #{user_seq}
+	</select>
+	
 </mapper>
