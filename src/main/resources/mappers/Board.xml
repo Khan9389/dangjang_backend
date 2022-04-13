@@ -40,10 +40,17 @@
 		        ,b.wdate
 		        ,@rownum := @rownum+1 as rnum
 		        from board B, (select@rownum:=0) R
+		        
 				
 			<if test="!keyword.equals('') and keyword!=null">
 			
-			where category_code like #{keyword}
+				where category_code like #{keyword}
+				
+			</if>
+			
+			<if test="!user_id.equals('') and user_id!=null">
+			
+				where user_id=#{user_id}
 				
 			</if>
 			
