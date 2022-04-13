@@ -14,7 +14,7 @@ import lombok.Setter;
 public class FreeBoardDto extends BaseDto{
 	    
 	private long free_seq=-1;
-	private String user_id="";
+	private String userid="";
 	private String title="";
 	private String content="";
 	private String image="";
@@ -22,13 +22,14 @@ public class FreeBoardDto extends BaseDto{
 	private String like_cnt="";
 	private String hit="";
 	private String user_seq="";
+	private String click="";
 	
 	@Builder
-	public FreeBoardDto(long free_seq, String user_id, String title, String content, String image, String wdate,
+	public FreeBoardDto(long free_seq, String userid, String title, String content, String image, String wdate,
 			String like_cnt, String hit, String user_seq) {
 		super();
 		this.free_seq = free_seq;
-		this.user_id = user_id;
+		this.userid = userid;
 		this.title = title;
 		this.content = content;
 		this.image = image;

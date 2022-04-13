@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	 
+<mapper namespace="Like">
+	<insert id="Like_insert" parameterType="LikeDto">
+		insert ignore into `like`
+		(user_seq, free_seq, `like`)
+		values
+		(#{user_seq}, #{free_seq}, #{like})
+	</insert>
+	<delete id="Like_delete" parameterType="LikeDto">
+		delete from `like` where free_seq=#{free_seq} and user_seq = #{user_seq}
+	</delete>
+	
+	<select id="Like_getView"  parameterType="LikeDto"  resultType="LikeDto">
+ 		select
+			*
+		from `like` where free_seq=#{free_seq} and user_seq = #{user_seq}
+	</select>
+	
+</mapper>

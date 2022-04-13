@@ -13,6 +13,7 @@ public interface FreeBoardDao {
 	int getTotalCnt(FreeBoardDto dto);
 	FreeBoardDto getView(long free_seq);
 	void insert(FreeBoardDto dto);
+	void updateHit(int id);//조회수 증가
 	void update(FreeBoardDto dto);
 	void delete(FreeBoardDto dto);
 	

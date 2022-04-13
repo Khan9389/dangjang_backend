@@ -14,52 +14,17 @@
 	<select id="FreeBoard_getList"  parameterType="FreeBoardDto"  resultType="FreeBoardDto">
  		
  		select 
- 			free_seq
- 			,title
- 			,(select user_id from user B where B.user_id=A.user_id) as user_id
- 			,content
- 			,image
- 			,wdate
- 			,rnum
- 		from 
- 			
- 		(
-	 		select
-				A.free_seq
-				,A.title
-				,A.content
-				,A.image
-				,A.wdate
-				,A.user_id
-			    ,@rownum := @rownum+1 AS rnum
-				from freeboard A, (select @rownum:=0) R
-				
-			<if test='key!=null and keyword!=null'>
-				
-	
-				<if test='key=="1"'>
-				where title like concat('%', #{keyword} , '%') or
-				      contents like concat('%', #{keyword} , '%') or 
-				      writer like concat('%', #{keyword} , '%') 
-				</if>
-				
-				<if test='key=="2"'>
-				where title like concat('%', #{keyword} , '%')
-				</if>
-				
-				<if test='key=="3"'>
-				where contents like concat('%', #{keyword} , '%')
-				</if>
-				
-				<if test='key=="4"'>
-				where title like concat('%', #{keyword} , '%') or
-				      contents like concat('%', #{keyword} , '%') 
-				</if>
-				
-			</if> 
-			
-			order by free_seq desc
-		) A
+		A.free_seq
+		,title
+		,(select userid from member B where B.userid=A.userid) as userid
+		,content
+		,image
+		,wdate
+        , case when A.free_seq in (select free_seq from `like` B where user_seq = #{user_seq}) then '1' else '0' end as click
+		from 
+		freeboard A
+		order by free_seq desc
+		
 		
 	</select>
 	<!--  
@@ -101,9 +66,9 @@
 	
 	<insert id="FreeBoard_insert" parameterType="FreeBoardDto">
 		insert into freeboard
-		( title, user_id, content, wdate, filename, image_url)
+		( title, userid, content, wdate, image, user_seq)
 		values
-		(#{title}, #{user_id}, #{content}, now(), #{filename}, #{image_url})
+		(#{title}, #{userid}, #{content}, now(), #{image}, #{user_seq})
 	</insert>
 	
 	<select id="FreeBoard_getView"  parameterType="Long"  resultType="FreeBoardDto">
@@ -111,10 +76,9 @@
 			A.free_seq
 			,A.title
 			,A.content
-			,(select user_id from user B where B.user_id = A.user_id) as user_id 
+			,(select userid from member B where B.userid = A.userid) as userid 
 			,A.wdate
-			,ifnull(filename, '') filename
-			,ifnull(image_url, '') image_url
+			,A.image
 		from freeboard A where free_seq=#{free_seq}
 
 	</select>
@@ -127,7 +91,7 @@
 	<update id="FreeBoard_update" parameterType="FreeBoardDto" >
 	update freeboard 
 		set title = #{title}
-			,user_id = #{user_id}
+			,userid = #{userid}
 			,content = #{content}
 			,filename = #{filename}
 			,image_url = #{image_url}
