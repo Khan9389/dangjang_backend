@@ -14,6 +14,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Resource(name="boardDao")
 	BoardDao dao;
+	
 	@Override
 	public List<BoardDto> getList(BoardDto dto) {
 		return dao.getList(dto);
@@ -30,7 +31,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int getTotalCnt(BoardDto dto) {
+	public List<BoardDto> getTotalCnt(BoardDto dto) {
 		return dao.getTotalCnt(dto);
 	}
 

@@ -39,3 +39,26 @@
 - [혁주] 당장마켓 수정 #22 (22.04.04)
     - zzim 관련 dao, impl, service, service impl, xml 생성
     - board 관련 업로드 문제 수정
+- [혁주] 당장마켓 리스트 수정 삭제 기능 추가 #23 (22.04.07)
+    - board dao, daoimpl, service, serviceimpl, xml, controller - totalCnt 부분 수정
+
+- [용환] 당장마켓 왁자지껄 수정 #24 (22.04.09)
+    -  board dao, daoimpl, service, serviceimpl, xml, controller 수정
+
+- [혁주] board.xml 파일 수정 #26 (22.04.10)
+    - 이미지 확대기능을 위한 board.xml 수정
+
+- [혁주] 찜 기능 구현 중 및 테이블 명 수정 #27 (22.04.11)
+    - 찜하기 찜 취소 구현 완료, 나라님이 변경하신 테이블 명세서대로 xml 파일 수정
+
+- [혁주] 찜기능 구현 완료 #28 (22.04.12)
+    - zzim.xml / controller, dao, daoImpl, service, serviceImpl 구현 완료
+
+- [혁주] 깃 연동 오류 수정 #29 (22.04.12)
+    - 스프링시큐리티 부분 오류 수정
+
+- [혁주] 마이페이지 내 판매목록 구현 #30 (22.04.13)
+    - board.xml 에서 쿼리문 수정
+
+- [용환] 좋아요 구현, 댓글 수정중 #31 (22.04.14)
+    - 좋아요, 좋아요취소 구현 완료, 댓글 

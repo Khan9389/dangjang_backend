@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="MessageBox">
+
+<select id="Box_senderList" parameterType="MessageBoxDto" resultType="MessageBoxDto">
+	
+	select 
+		box_seq,
+		board_seq,
+		(select title from board b where b.board_seq=m.board_seq),
+		(select image1 from board b where b.board_seq=m.board_seq),
+		content,
+		wdate,
+		sender,
+		receiver,
+		ischeck
+	from
+		messagebox m
+	where 
+		sender=#{sender}
+
+</select>
+
+<select id="Box_receiverList" parameterType="MessageBoxDto" resultType="MessageBoxDto">
+
+	select 
+		box_seq,
+		board_seq,
+		(select title from board b where b.board_seq=m.board_seq),
+		(select image1 from board b where b.board_seq=m.board_seq),
+		content,
+		wdate,
+		sender,
+		receiver,
+		ischeck
+	from
+		messagebox m
+	where 
+		receiver=#{receiver}
+
+</select>
+
+<select id="Box_getView" parameterType="String" resultType="MessageBoxDto">
+
+	select 
+		box_seq,
+		board_seq,
+		(select title from board b where b.board_seq=m.board_seq) as title,
+		(select image1 from board b where b.board_seq=m.board_seq) as image,
+		content,
+		wdate,
+		sender,
+		receiver,
+		ischeck
+	from
+		messagebox m
+	where 
+		box_seq=#{box_seq}
+
+</select>
+
+<insert id="Box_insert" parameterType="MessageBoxDto">
+
+	insert into messagebox
+	(board_seq,content,wdate,sender,receiver,ischeck)
+	values
+	(#{board_seq},#{content},now(),#{sender},#{receiver},'N')
+
+</insert>
+
+<delete id="Box_delete" parameterType="MessageBoxDto">
+
+	delete from messagebox where box_seq=#{box_seq}
+
+</delete>
+
+<update id="Box_update" parameterType="MessageBoxDto">
+	
+	update messagebox
+		set ischeck='Y'
+	where box_seq=#{box_seq}
+
+</update>
+</mapper>

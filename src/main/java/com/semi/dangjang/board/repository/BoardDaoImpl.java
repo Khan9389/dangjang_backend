@@ -33,8 +33,8 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public int getTotalCnt(BoardDto dto) {
-		return sm.selectOne("Board.Board_getTotal", dto);
+	public List<BoardDto> getTotalCnt(BoardDto dto) {
+		return sm.selectList("Board.Board_getTotal", dto);
 	}
 
 	@Override
