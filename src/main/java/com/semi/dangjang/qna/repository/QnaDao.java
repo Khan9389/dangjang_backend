@@ -11,5 +11,6 @@ public interface QnaDao {
 	void qnaInsert(QnaDto dto);
 	void qnaUpdate(QnaDto dto);
 	void qunDelete(QnaDto dto);
+	List<QnaDto> getQnaSerach(QnaDto dto);
 	
 }

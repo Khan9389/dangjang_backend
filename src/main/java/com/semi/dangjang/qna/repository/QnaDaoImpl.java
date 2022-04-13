@@ -49,4 +49,9 @@ public class QnaDaoImpl implements QnaDao {
 		
 	}
 
+	@Override
+	public List<QnaDto> getQnaSerach(QnaDto dto) {
+		return sm.selectList("Qna_search",dto);
+	}
+
 }

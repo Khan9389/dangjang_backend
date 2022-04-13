@@ -69,14 +69,21 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public void qnaCommentDelete(QnaCommentDto dto) {
-		commentDao.qnaCommentDelete(dto);
+	public void qnaCommentDelete(String qnaco_seq) {
+		commentDao.qnaCommentDelete(qnaco_seq);
 	}
 
 	@Override
 	public void qnaCommentUpdate(QnaCommentDto dto) {
 		// TODO Auto-generated method stub
 		commentDao.qnaCommentUpdate(dto);
+	}
+
+	@Override
+	public List<QnaDto> getQnaSerach(QnaDto dto) {
+		// TODO Auto-generated method stub
+		
+		return dao.getQnaSerach(dto);
 	}
 
 }
