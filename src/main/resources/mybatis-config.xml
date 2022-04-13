@@ -13,9 +13,13 @@
         <typeAlias alias="FreeBoardDto" type="com.semi.dangjang.freeboard.domain.FreeBoardDto"/>
         <typeAlias alias="FBCommentDto" type="com.semi.dangjang.comment.domain.FBCommentDto"/>
         <typeAlias alias="QnaDto" type="com.semi.dangjang.qna.domain.QnaDto"/>
+
         <typeAlias alias="MessageBoxDto" type="com.semi.dangjang.box.domain.MessageBoxDto"/>
         <typeAlias alias="MemberDto" type="com.semi.dangjang.member2.MemberDto"/>
 
+
+
+        <typeAlias alias="QnaCommentDto" type="com.semi.dangjang.qnaComment.domain.QnaCommentDto"/>
 
     </typeAliases>
     
@@ -27,8 +31,12 @@
         <mapper resource="mappers/Search.xml"/>
         <mapper resource="mappers/FreeBoard.xml"/>
         <mapper resource="mappers/FBComment.xml"/>
+
         <mapper resource="mappers/MessageBox.xml"/>
          <mapper resource="mappers/Member.xml"/>
         
+
+        <mapper resource="mappers/QnaComment.xml"/>
+
     </mappers>
 </configuration>

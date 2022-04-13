@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.semi.dangjang.common.FileUploadUtil;
 import com.semi.dangjang.qna.domain.QnaDto;
 import com.semi.dangjang.qna.service.QnaService;
+import com.semi.dangjang.qnaComment.domain.QnaCommentDto;
+import com.semi.dangjang.qnaComment.repository.QnaCommentDao;
 
 
 
@@ -35,6 +37,8 @@ public class QnaController {
 	
 	@Resource(name="qnaService")
 	QnaService qnaService;
+	
+	
 	
 	@RequestMapping("/qna/list/{pg}/{category_code}")
 	HashMap<String, Object> getList(@PathVariable("pg")int pg,@PathVariable("category_code")String category_code, QnaDto dto)
@@ -54,7 +58,15 @@ public class QnaController {
 	
 	@RequestMapping("/qna/view/{qna_seq}")
 	QnaDto getView(@PathVariable("qna_seq")String id) {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+qnaService.getView(id));
+		
 		return qnaService.getView(id);
+	}
+	@RequestMapping("/qnacomment/view/{qna_seq}")
+	QnaCommentDto getCommentView(@PathVariable("qna_seq")String id) {
+		System.out.println("!@##$@#$%^@%T@$%$^%&$^^U#%YH%E^H"+id);
+		System.out.println("댓글답변댓글답변댓글답변댓글답변댓글답변댓글답변댓글답변댓글답변"+qnaService.getQnaCommentView(id));
+		return qnaService.getQnaCommentView(id);
 	}
 	
 	@RequestMapping("/qna/insert")
@@ -64,12 +76,31 @@ public class QnaController {
 		if(file!=null) {
 			try {
 				String filename=FileUploadUtil.upload(uploadDir, file);
-				dto.setImage(domain + "/dangjang/" + uploadDir+"/" +filename);
+				dto.setImage(domain + "/" + uploadDir+"/" +filename);
 			}catch(IOException e) {
 				e.printStackTrace();
 			}
 		}
 		qnaService.qnaInsert(dto);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("result", "success");
+		return map;
+	}
+	
+	@RequestMapping("/qnacomment/insert")
+	Map<String,String> commentInsert(QnaCommentDto dto)
+	{
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!"+dto);
+		qnaService.qnaCommentInsert(dto);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("result", "success");
+		return map;
+	}
+	
+	@RequestMapping("/qnacomment/update")
+	Map<String,String> commentUpdate(QnaCommentDto dto)
+	{
+		qnaService.qnaCommentUpdate(dto);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("result", "success");
 		return map;

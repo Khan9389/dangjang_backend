@@ -32,6 +32,7 @@
  			,user_seq
  			,content
  			,wdate
+ 			,(select at from user B where B.user_seq=A.user_seq) as at
 		from qna A
 		where category_code=#{category_code}
 		<if test='category_code != "09"'>
@@ -62,9 +63,9 @@
 	
 	<insert id="Qna_insert" parameterType="QnaDto">
 		insert into qna
-		( title, user_seq, content, wdate, image)
+		( title, user_seq, content, wdate, image,category_code)
 		values
-		(#{title}, #{user_seq}, #{content}, now(), #{image})
+		(#{title}, #{user_seq}, #{content}, now(), #{image},'09')
 	</insert>
 	
 	<select id="Qna_getView"  parameterType="String"  resultType="QnaDto">
@@ -77,6 +78,8 @@
 			,ifnull(image, '') image
 			,(select nick_name from user B where B.user_seq=A.user_seq) as nick_name
 			,A.category_code
+			,ifnull((select content from qna_comment where qna_seq=#{qna_seq}),'⏱️ 답변을 기다려주세요') answer
+			,(select at from user B where B.user_seq=A.user_seq) as at
 		from qna A where qna_seq=#{qna_seq}
 
 	</select>
