@@ -8,6 +8,7 @@
         
         <typeAlias alias="BoardDto" type="com.semi.dangjang.board.domain.BoardDto"/>
         <typeAlias alias="ZzimDto" type="com.semi.dangjang.zzim.ZzimDto"/>
+        <typeAlias alias="LikeDto" type="com.semi.dangjang.like.LikeDto"/>
         <typeAlias alias="SearchDto" type="com.semi.dangjang.search.domain.SearchDto"/>
         <typeAlias alias="FreeBoardDto" type="com.semi.dangjang.freeboard.domain.FreeBoardDto"/>
         <typeAlias alias="FBCommentDto" type="com.semi.dangjang.comment.domain.FBCommentDto"/>
@@ -21,6 +22,7 @@
     <mappers>   
         <mapper resource="mappers/Board.xml"/>
         <mapper resource="mappers/Zzim.xml"/>
+        <mapper resource="mappers/Like.xml"/>
         <mapper resource="mappers/Qna.xml"/>
         <mapper resource="mappers/Search.xml"/>
         <mapper resource="mappers/FreeBoard.xml"/>

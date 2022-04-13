@@ -19,19 +19,21 @@
 	</insert>
 	
 	
-	<select id="FBComment_getList" parameterType="FBCommentDto"  resultType="FBCommentDto">
+	<select id="fbComment_getList" parameterType="FBCommentDto"  resultType="FBCommentDto">
 	 select A.* 
-	 	from user u join fb_comment A on A.user_seq=u.user_seq 
+	 	from member u join fb_comment A on A.user_seq=u.user_seq 
 	 		where A.free_seq=#{free_seq}
 	 		order by fbco_seq desc
 	 		 <!-- limit #{start}, #{pageSize} -->
 	</select>
 	
-	
+	<!-- 아직 안씀 -->
 	<select id="Comment_count" parameterType="FBCommentDto" resultType="Integer">
 		select count(*) from  where freeboard_seq=#{freeboard_seq}
 	</select>
 	
+	
+	<!-- 아직 안씀 -->
 	<delete id="Comment_delete" parameterType="String">
 		delete from  where review_seq=#{review_seq}
 	</delete> 
