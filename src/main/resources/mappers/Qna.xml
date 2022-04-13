@@ -28,11 +28,11 @@
  		select 
  			qna_seq
  			,title
- 			,(select nick_name from user B where B.user_seq=A.user_seq) as nick_name
+ 			,(select nick_name from member B where B.user_seq=A.user_seq) as nick_name
  			,user_seq
  			,content
  			,wdate
- 			,(select at from user B where B.user_seq=A.user_seq) as at
+ 			,(select role from member B where B.user_seq=A.user_seq) as role
 		from qna A
 		where category_code=#{category_code}
 		<if test='category_code != "09"'>
@@ -44,6 +44,21 @@
 		
 		</if>
 			limit #{start}, #{pageSize}  
+	</select>
+	<select id="Qna_search" parameterType="QnaDto" resultType="QnaDto">
+		
+		select * from qna
+			<if test='keyword!=null'>
+	
+			
+				where title like concat('%', #{keyword} , '%') or
+				      content like concat('%', #{keyword} , '%') 
+				    
+				
+				
+			</if> 
+			
+		
 	</select>
 	<!--  
 		paging  쿼리는  dbms마다 다르다 
@@ -79,7 +94,8 @@
 			,(select nick_name from user B where B.user_seq=A.user_seq) as nick_name
 			,A.category_code
 			,ifnull((select content from qna_comment where qna_seq=#{qna_seq}),'⏱️ 답변을 기다려주세요') answer
-			,(select at from user B where B.user_seq=A.user_seq) as at
+			,(select at from user B where B.user_seq=A.user_seq) as at,
+			(select qnaco_seq from qna_comment where qna_seq=#{qna_seq}) qnaco_seq
 		from qna A where qna_seq=#{qna_seq}
 
 	</select>
@@ -98,6 +114,7 @@
 			,image = #{image}
 	where  qna_seq=#{qna_seq}
 	</update>
+	
 		
 </mapper>
 

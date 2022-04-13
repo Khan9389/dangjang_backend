@@ -22,7 +22,7 @@
 		(default, #{user_seq},#{qna_seq}, #{content}, now())
 	</insert>
 	
-	<delete id="QnaComment_delete" parameterType="QnaCommentDto" >
+	<delete id="QnaComment_delete" parameterType="String" >
 	delete from qna_comment where qnaco_seq=#{qnaco_seq}
 	</delete>
 	

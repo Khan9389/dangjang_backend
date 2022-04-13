@@ -51,21 +51,34 @@ public class QnaController {
 		map.put("totalCnt", qnaService.getQnaTotalCnt(dto));
 		map.put("list",qnaService.getQanList(dto));
 		
-		System.out.println(dto);
+		System.out.println(qnaService.getQanList(dto));
+		
+		return map;
+	}
+	@RequestMapping("/qna/search/{pg}/{keyword}")
+	HashMap<String, Object> getSearch(@PathVariable("pg")int pg,@PathVariable("keyword")String keyword, QnaDto dto)
+	{
+		System.out.println("검색검색검색검색검색검색검색"+pg+","+keyword);
+		dto.setStart((pg-1)*dto.getPageSize());
+		dto.setKeyword(keyword);
+		
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		
+		map.put("list",qnaService.getQnaSerach(dto));
+		
+		System.out.println(qnaService.getQnaSerach(dto));
 		
 		return map;
 	}
 	
 	@RequestMapping("/qna/view/{qna_seq}")
 	QnaDto getView(@PathVariable("qna_seq")String id) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+qnaService.getView(id));
 		
 		return qnaService.getView(id);
 	}
+	
 	@RequestMapping("/qnacomment/view/{qna_seq}")
 	QnaCommentDto getCommentView(@PathVariable("qna_seq")String id) {
-		System.out.println("!@##$@#$%^@%T@$%$^%&$^^U#%YH%E^H"+id);
-		System.out.println("댓글답변댓글답변댓글답변댓글답변댓글답변댓글답변댓글답변댓글답변"+qnaService.getQnaCommentView(id));
 		return qnaService.getQnaCommentView(id);
 	}
 	
@@ -90,7 +103,6 @@ public class QnaController {
 	@RequestMapping("/qnacomment/insert")
 	Map<String,String> commentInsert(QnaCommentDto dto)
 	{
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!"+dto);
 		qnaService.qnaCommentInsert(dto);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("result", "success");
@@ -101,6 +113,14 @@ public class QnaController {
 	Map<String,String> commentUpdate(QnaCommentDto dto)
 	{
 		qnaService.qnaCommentUpdate(dto);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("result", "success");
+		return map;
+	}
+	@RequestMapping("/qnacomment/delete/{qnaco_seq}")
+	Map<String,String> commentDelete(@PathVariable("qnaco_seq")String id)
+	{
+		qnaService.qnaCommentDelete(id);
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("result", "success");
 		return map;
@@ -118,6 +138,8 @@ public class QnaController {
 	
 	@RequestMapping("/qna/update")
 	Map<String,String> update(MultipartFile file,QnaDto dto, HttpServletRequest req){
+		System.out.println("업데이트업데이트업데이트업데이트업데이트업데이트업데이트업데이트");
+		System.out.println(dto);
 		String uploadDir = fileUploadPath +"/image";
 		if(file!=null) {
 			try {

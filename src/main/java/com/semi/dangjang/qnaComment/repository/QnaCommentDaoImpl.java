@@ -24,8 +24,8 @@ public class QnaCommentDaoImpl implements QnaCommentDao {
 	}
 
 	@Override
-	public void qnaCommentDelete(QnaCommentDto dto) {
-		sm.delete("QnaComment_delete",dto);		
+	public void qnaCommentDelete(String qnaco_seq) {
+		sm.delete("QnaComment_delete",qnaco_seq);		
 	}
 
 	@Override
