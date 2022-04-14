@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,17 +53,31 @@ public class MemberController2 {
 	@RequestMapping("/member/isDuplicate")
 	public HashMap<String, String> member_isDuplicate(MemberDto dto)
 	{
-		System.out.println("userid : " + dto.getUserid());
+		//System.out.println("userid : " + dto.getUserid());
+		System.out.println("nick_name: " + dto.getNick_name());
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", memberService.isDuplicate(dto)+"");
 		
 		return map;
 	}
 	
+	@RequestMapping("/member/isDuplicateNickName")
+	public HashMap<String, String> member_isDuplicateNickName(MemberDto dto)
+	{
+
+		System.out.println("nick_name: " + dto.getNick_name());
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("result", memberService.isDuplicateNickName(dto)+"");
+		
+	return map;
+	}
+	
+	
+	
 	@RequestMapping(value="/member/logout")
 	public HashMap<String, String>  member_logout(HttpServletRequest request)
 	{
-		// loginYN ÄÃ·³ Ãß°¡½Ã ÄÚµå Ãß°¡ÇÒ°Í
+		// loginYN ï¿½Ã·ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ß°ï¿½ï¿½Ò°ï¿½
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "success");
 		return map;
@@ -70,29 +85,42 @@ public class MemberController2 {
 	
 	
 	@RequestMapping(value="/member/findid")
-	public HashMap<String, String> member_findid_proc(MemberDto dto)
-	{	
+	public HashMap<String, String> member_findid_proc(HashMap<String, String> map2, @RequestBody MemberDto dto)
+	
+	{
+	
+		/*
+		 * System.out.println(
+		 * "**********************************************************");
+		 * System.out.println(dto.getName()); System.out.println(dto.getPhone());
+		 * System.out.println(dto.getEmail());
+		 */
+		
 		MemberDto findDto = memberService.findId(dto);
 		HashMap<String, String> map = new HashMap<String, String>();
 		if (findDto==null)
 			map.put("result", "fail");
 		else
 		{
-			map.put("result", findDto.getUserid());
+			map.put("result", "success");
 			map.put("userid", findDto.getUserid());
-			map.put("nickname", findDto.getNick_name());
-			map.put("email", findDto.getEmail());
-			map.put("phone", findDto.getPhone());
-			map.put("role", findDto.getRole());
+			
 		}
 		return map;
 	}
 	
 	
 	@RequestMapping(value="/member/findpass")
-	public HashMap<String, String> member_findpass_proc(MemberDto dto)
+	public HashMap<String, String> member_findpass_proc(HashMap<String, String> map2, @RequestBody MemberDto dto)
 	{	
-		// ÆÐ½º¿öµå º¯°æÇÏ´Â ÄÚµå Ãß°¡ÇÒ°Í
+		
+		System.out.println("**********************************************************");
+		System.out.println(dto.getUserid());
+		System.out.println(dto.getPhone());
+		System.out.println(dto.getEmail());
+		
+		
+		// ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Úµï¿½ ï¿½ß°ï¿½ï¿½Ò°ï¿½
 		HashMap<String, String> map = new HashMap<String, String>();
 		MemberDto findDto = memberService.findPassword(dto);
 		
@@ -103,6 +131,7 @@ public class MemberController2 {
 			map.put("result", "success");
 			map.put("userid", findDto.getUserid());
 			map.put("password", findDto.getPassword());
+			
 		}
 		return map;
 	}

@@ -15,6 +15,14 @@ public class MemberServiceImpl2 implements MemberService2{
 		
 		return memberDao.isDuplicate(dto);
 	}
+	
+	@Override
+	public boolean isDuplicateNickName(MemberDto dto) {
+		
+		return memberDao.isDuplicateNickName(dto);
+	}
+	
+	
 
 	@Override
 	public void insert(MemberDto dto) {

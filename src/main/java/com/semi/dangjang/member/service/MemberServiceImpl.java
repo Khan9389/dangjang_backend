@@ -29,7 +29,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 	public void validateDuplicateMember(Member member) {
 		Member findMember = memberRepository.findByUserid(member.getUserid());
 		if (findMember != null) {
-			throw new IllegalStateException("?´ë¯? ê°??…?œ ?šŒ?›?…?‹ˆ?‹¤.");
+			throw new IllegalStateException("?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.");
 		}
 	}
 
@@ -42,7 +42,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 		}
 		
 		return User.builder()
-				.username(member.getUserid())
+				.username(member.getName() + "\t"+ member.getEmail() + "\t" + member.getRole() + "\t" + member.getNick_name() + "\t" + member.getUser_seq()) 
 				.password(member.getPassword())
 				.roles(member.getRole().toString())
 				.build();

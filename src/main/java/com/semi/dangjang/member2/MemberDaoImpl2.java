@@ -20,6 +20,19 @@ public class MemberDaoImpl2 implements MemberDao2{
 		else
 			return true; //�씠誘� �궗�슜以묒엫 
 	}
+	
+
+	@Override
+	public boolean isDuplicateNickName(MemberDto dto) {
+		
+	int cnt = sm.selectOne("Member_isduplicateNickName", dto);
+		if(cnt==0)
+			return false; //以묐났�븘�떂, �궗�슜媛��뒫�븳 �븘�씠�뵒�엫  
+	else
+		return true; //�씠誘� �궗�슜以묒엫 
+	}
+	
+	
 
 
 	@Override

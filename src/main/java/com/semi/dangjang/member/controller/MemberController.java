@@ -2,6 +2,7 @@ package com.semi.dangjang.member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,9 +15,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,11 +31,12 @@ import com.semi.dangjang.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin("*")
 @RequestMapping("/member")
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
-	
+
 	@Value("${fileUploadPath}")
 	String fileUploadPath;
 
@@ -40,18 +45,18 @@ public class MemberController {
 
 	@Autowired
 	UserDetailsService userSevice;
-	
+
 	@Autowired
 	MemberService memberSevice;
-	
-	//private final PasswordEncoder passwordEncoder;
+
+	// private final PasswordEncoder passwordEncoder;
 
 	@PostMapping(value = "/insert")
-	public HashMap<String, String> newMember(MultipartFile file,@Valid MemberFormDto memberFormDto, 
+	public HashMap<String, String> newMember(MultipartFile file, @Valid MemberFormDto memberFormDto,
 			BindingResult bindingResult, Model model) {
 		System.out.println(memberFormDto);
 
-		if(file!=null && !file.getOriginalFilename().isBlank()) {		
+		if (file != null && !file.getOriginalFilename().isBlank()) {
 			String uploadDir = fileUploadPath + "/image";
 			if (file != null) {
 				try {
@@ -74,36 +79,58 @@ public class MemberController {
 		} catch (IllegalStateException e) {
 			model.addAttribute("errorMessage", e.getMessage());
 		}
-		
 
 		return map;
 	}
 
-	@GetMapping(value = "/login")
-	public HashMap<String, String> loginMember(String userid, String password, HttpServletRequest request) {
+	@PostMapping(value = "/login")
+	public HashMap<String, String> loginMember( @RequestBody Map<String, String> userInfo, HttpServletRequest request) {
 		
-		System.out.println("$$$$$$$$$$$$$$$$$$$$" + userid);
-		UserDetails user = userSevice.loadUserByUsername(userid);
 		
+		
+		System.out.println("$$$$$$$$$$$$$$$$$$$$" + userInfo.get("userid"));
 		
 		HashMap<String, String> map = new HashMap<String, String>();
-		if (user == null) {
-			map.put("result", "fail");
+		
 
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("name", user.getUsername());
+			
+		try {
+			
+	
+			UserDetails user = userSevice.loadUserByUsername(userInfo.get("userid"));
+				
+		
+			String userid = userInfo.get("userid");
+			String password= userInfo.get("password");
+			
+			if( password.equals(user.getPassword()))
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("name", user.getUsername());
 			//session.setAttribute("userid", user.getAuthorities());
 			//session.setAttribute("email", user.getEmail());
-			map.put("result", "success");
+				String [] s = user.getUsername().split("\t");
+				map.put("result", "success");
+				map.put("username", s[0]);
+				map.put("email", s[1]);
+				map.put("role", s[2]);
+				map.put("nickname", s[3]);
+				map.put("user_seq", s[4]);
+			}
+			else
+			{
+				map.put("result", "passwordÍ∞Ä ÏùºÏπòÌïòÏßÄ ÏïäÏäµÎãàÎã§. ");
+			}
 
+		} catch(Exception e) {
+			map.put("result", "fail");
 		}
 		return map;
 	}
 
 	@GetMapping(value = "/login/error")
 	public String loginError(Model model) {
-		model.addAttribute("loginErrorMsg", "?ïÑ?ù¥?îî ?òê?äî ÎπÑÎ?Î≤àÌò∏Î•? ?ôï?ù∏?ï¥Ï£ºÏÑ∏?öî");
+		model.addAttribute("loginErrorMsg", "?ÔøΩÔøΩ?ÔøΩÔøΩ?ÔøΩÔøΩ ?ÔøΩÔøΩ?ÔøΩÔøΩ ÎπÑÔøΩ?Î≤àÌò∏ÔøΩ? ?ÔøΩÔøΩ?ÔøΩÔøΩ?ÔøΩÔøΩÏ£ºÏÑ∏?ÔøΩÔøΩ");
 		return "/member/memberLoginForm";
 	}
 

@@ -15,6 +15,16 @@
 		select count(*) from member
 		where userid=#{userid}
 	</select>
+	
+	 <select id="Member_isduplicateNickName" parameterType="MemberDto"
+		resultType="Integer">
+		select count(*) from member
+		where nick_name=#{nick_name}
+	</select> 
+	
+	
+	
+	
 
 
 	<select id="Member_getInfo" parameterType="MemberDto"
@@ -54,7 +64,7 @@
 		role,
 		images
 		from member
-		where email=#{email} and phone=#{phone}
+		where email=#{email} and phone=#{phone} and  name=#{name}
 	</select>
 
 	<select id="Member_findpassword" parameterType="MemberDto"
