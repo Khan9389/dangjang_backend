@@ -7,12 +7,12 @@
 
 	
 	<insert id="fbcommentinsert" parameterType="FBCommentDto">
-		insert into fb_commnet
+		insert into fb_comment
 		(	
 			user_seq,
 			free_seq,
 			content,
-			wdate,
+			wdate
 		)
 		values
 		(#{user_seq},#{free_seq}, #{content}, now())
@@ -20,7 +20,7 @@
 	
 	
 	<select id="fbComment_getList" parameterType="FBCommentDto"  resultType="FBCommentDto">
-	 select A.* 
+	 select A.*, u.userid 
 	 	from member u join fb_comment A on A.user_seq=u.user_seq 
 	 		where A.free_seq=#{free_seq}
 	 		order by fbco_seq desc
@@ -34,8 +34,8 @@
 	
 	
 	<!-- 아직 안씀 -->
-	<delete id="Comment_delete" parameterType="String">
-		delete from  where review_seq=#{review_seq}
+	<delete id="fbcomment_delete" parameterType="String">
+		delete from  where fbco_seq=#{fbco_seq}
 	</delete> 
 	
 	<!-- 

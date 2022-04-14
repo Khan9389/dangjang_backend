@@ -12,11 +12,13 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor(access=AccessLevel.PUBLIC)
 public class FBCommentDto extends BaseDto{
+	
 	private String fbco_seq="";
 	private String user_seq="";
 	private String free_seq="";
 	private String content="";
 	private String wdate="";
+	private String userid="";
 	
 	@Builder
 	public FBCommentDto(String fbco_seq, String user_seq, String free_seq, String content, String wdate) {
