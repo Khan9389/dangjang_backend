@@ -76,6 +76,12 @@ public class FreeBoardServiceImpl implements FreeBoardService{
 		return fbcommentDao.fbcommentTotal(dto);
 		
 	}
+
+	@Override
+	public void fbcomment_delete(FBCommentDto dto) {
+		fbcommentDao.fbcomment_delete(dto);
+		
+	}
 	
 	
 }

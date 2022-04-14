@@ -19,5 +19,6 @@ public interface FreeBoardService {
 	
 	List<FBCommentDto> fbcommentList(FBCommentDto dto);
 	void fbcommentinsert(FBCommentDto dto);
+	void fbcomment_delete(FBCommentDto dto);
 	int fbcommentTotal(FBCommentDto dto);
 }

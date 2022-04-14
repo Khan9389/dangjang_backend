@@ -34,7 +34,7 @@ public class FBCommentDaoImpl implements FBCommentDao{
 
 	@Override
 	public void fbcomment_delete(FBCommentDto dto) {
-		// TODO Auto-generated method stub
+		sm.delete("FBComment.fbComment_delete", dto);
 		
 	}
 	

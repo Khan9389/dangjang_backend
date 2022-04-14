@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,6 +62,31 @@ public class FreeBoardController {
 		return map;
 	}
 	
+	@RequestMapping("/fbcomment/delet/{fbco_seq}")
+	Map<String, String> fbcomment_delete(@PathVariable("fbco_seq")String fbco_seq, HttpServletRequest req)
+	{
+		FBCommentDto dto=new FBCommentDto();
+		dto.setFbco_seq(fbco_seq);
+		freeboardService.fbcomment_delete(dto);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("result", "success");
+		return map;
+	}
+	
+	
+	@RequestMapping("/fbcomment/insert")
+	Map<String, String> fbcommentinsert(FBCommentDto dto)
+	{
+		System.out.println(dto.getUser_seq());
+		System.out.println(dto.getContent());
+		freeboardService.fbcommentinsert(dto);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("result", "success");
+		return map;
+	}
+	
+	
+	
 	// Map -> HashMap의 추상클래스  -- aixos 가 json 으로 보내는데 json 받으려면 
 	//@RequestBody  가 있어야 한다 
 	@RequestMapping("/freeboard/insert")
@@ -95,6 +121,7 @@ public class FreeBoardController {
 		map.put("result", "success");
 		return map;
 	}
+	
 	
 //	
 //    @GetMapping("/download/image/{file}")
