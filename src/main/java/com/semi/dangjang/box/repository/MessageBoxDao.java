@@ -12,5 +12,6 @@ public interface MessageBoxDao {
 	void insert(MessageBoxDto dto);
 	void update(MessageBoxDto dto);
 	void delete(MessageBoxDto dto);
+	int count(MessageBoxDto dto);
 
 }

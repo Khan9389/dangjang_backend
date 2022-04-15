@@ -49,6 +49,12 @@ public class MessageBoxDaoImpl implements MessageBoxDao{
 		// TODO Auto-generated method stub
 		sm.delete("Box_delete",dto);
 	}
+
+	@Override
+	public int count(MessageBoxDto dto) {
+		// TODO Auto-generated method stub
+		return sm.selectOne("Box_count",dto);
+	}
 	
 	
 

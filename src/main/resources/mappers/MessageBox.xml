@@ -10,8 +10,8 @@
 	select 
 		box_seq,
 		board_seq,
-		(select title from board b where b.board_seq=m.board_seq),
-		(select image1 from board b where b.board_seq=m.board_seq),
+		(select title from board b where b.board_seq=m.board_seq) title,
+		(select image1 from board b where b.board_seq=m.board_seq) image,
 		content,
 		wdate,
 		sender,
@@ -29,8 +29,8 @@
 	select 
 		box_seq,
 		board_seq,
-		(select title from board b where b.board_seq=m.board_seq),
-		(select image1 from board b where b.board_seq=m.board_seq),
+		(select title from board b where b.board_seq=m.board_seq) title,
+		(select image1 from board b where b.board_seq=m.board_seq) image,
 		content,
 		wdate,
 		sender,
@@ -84,4 +84,13 @@
 	where box_seq=#{box_seq}
 
 </update>
+
+<select id="Box_count" parameterType="MessageBoxDto" resultType="Integer">
+
+	select count(case when receiver=#{receiver} and ischeck='N' then 1 end) from messagebox
+	
+
+</select>
+
+
 </mapper>
