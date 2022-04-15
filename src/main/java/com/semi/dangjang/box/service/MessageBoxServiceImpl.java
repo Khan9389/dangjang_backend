@@ -50,6 +50,12 @@ public class MessageBoxServiceImpl implements MessageBoxService{
 		// TODO Auto-generated method stub
 		boxDao.delete(dto);
 	}
+
+	@Override
+	public int count(MessageBoxDto dto) {
+		// TODO Auto-generated method stub
+		return boxDao.count(dto);
+	}
 	
 	
 	

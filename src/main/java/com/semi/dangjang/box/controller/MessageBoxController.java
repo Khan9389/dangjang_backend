@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.semi.dangjang.box.domain.MessageBoxDto;
 import com.semi.dangjang.box.service.MessageBoxService;
 
+@CrossOrigin("*")
 @RestController
 public class MessageBoxController {
 	
@@ -22,7 +24,8 @@ public class MessageBoxController {
 	HashMap<String,Object> sender(MessageBoxDto dto){
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("sender", boxservice.senderList(dto));
+		map.put("sendList", boxservice.senderList(dto));
+		
 		return map;
 		
 	}
@@ -31,7 +34,7 @@ public class MessageBoxController {
 	HashMap<String,Object> receiver(MessageBoxDto dto){
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("sender", boxservice.receiverList(dto));
+		map.put("receiveList", boxservice.receiverList(dto));
 		return map;
 		
 	}
@@ -64,9 +67,18 @@ public class MessageBoxController {
 	@RequestMapping("/box/delete")
 	Map<String,String> delete(MessageBoxDto dto){
 		
+		System.out.println(dto.getBox_seq());
 		boxservice.delete(dto);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("result", "success");
 		return map;
 	}
+	
+	@RequestMapping("/box/count")
+	int count(MessageBoxDto dto) {
+		
+		return boxservice.count(dto);
+	}
+	
+	
 }
