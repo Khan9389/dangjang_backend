@@ -29,6 +29,12 @@ public class FBCommentDto extends BaseDto{
 		this.content = content;
 		this.wdate = wdate;
 	}
+
+	@Override
+	public String toString() {
+		return "FBCommentDto [fbco_seq=" + fbco_seq + ", user_seq=" + user_seq + ", free_seq=" + free_seq + ", content="
+				+ content + ", wdate=" + wdate + "]";
+	}
 	
 	
 }

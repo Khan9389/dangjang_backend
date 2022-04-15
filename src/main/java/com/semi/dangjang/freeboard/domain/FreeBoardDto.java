@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@NoArgsConstructor(access=AccessLevel.PUBLIC)  //±âº»»ý¼ºÀÚ¸¦ ¸¸µé¾îÁØ´Ù 
+@NoArgsConstructor(access=AccessLevel.PUBLIC)  //ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½ 
 public class FreeBoardDto extends BaseDto{
 	    
 	private long free_seq=-1;

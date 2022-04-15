@@ -5,7 +5,7 @@
 	 
 <mapper namespace="Zzim">
 	<insert id="Zzim_insert" parameterType="ZzimDto">
-		insert ignore into zzim
+		insert into zzim
 		(user_seq, board_seq, zzim)
 		values
 		(#{user_seq}, #{board_seq}, #{zzim})
