@@ -33,6 +33,7 @@
  			,content
  			,wdate
  			,(select role from member B where B.user_seq=A.user_seq) as role
+ 			,category_code
 		from qna A
 		where A.category_code=#{category_code}
 		<if test='category_code != "09"'>
