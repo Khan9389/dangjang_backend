@@ -34,7 +34,7 @@
  			,wdate
  			,(select role from member B where B.user_seq=A.user_seq) as role
 		from qna A
-		where category_code=#{category_code}
+		where A.category_code=#{category_code}
 		<if test='category_code != "09"'>
 		
 		order by qna_seq 
@@ -91,10 +91,10 @@
 			,A.content 
 			,A.wdate
 			,ifnull(image, '') image
-			,(select nick_name from user B where B.user_seq=A.user_seq) as nick_name
+			,(select nick_name from member B where B.user_seq=A.user_seq) as nick_name
 			,A.category_code
 			,ifnull((select content from qna_comment where qna_seq=#{qna_seq}),'⏱️ 답변을 기다려주세요') answer
-			,(select at from user B where B.user_seq=A.user_seq) as at,
+			,(select role from member B where B.user_seq=A.user_seq) as role,
 			(select qnaco_seq from qna_comment where qna_seq=#{qna_seq}) qnaco_seq
 		from qna A where qna_seq=#{qna_seq}
 
