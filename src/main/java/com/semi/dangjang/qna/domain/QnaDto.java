@@ -24,12 +24,12 @@ public class QnaDto extends BaseDto {
 	private String nick_name="";
 	private String category_code="";
 	private String answer="";
-	private String at="";
+	private String role="";
 	private String qnaco_seq="";
 	
 	@Builder
 	public QnaDto(String qna_seq, String user_seq, String title, String content, String wdate, String hit, String image,
-			String nick_name, String category_code, String answer, String at, String qnaco_seq) {
+			String nick_name, String category_code, String answer, String role, String qnaco_seq) {
 		super();
 		this.qna_seq = qna_seq;
 		this.user_seq = user_seq;
@@ -41,7 +41,7 @@ public class QnaDto extends BaseDto {
 		this.nick_name = nick_name;
 		this.category_code = category_code;
 		this.answer = answer;
-		this.at = at;
+		this.role = role;
 		this.qnaco_seq = qnaco_seq;
 	}
 	
