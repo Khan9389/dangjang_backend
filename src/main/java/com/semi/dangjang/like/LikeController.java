@@ -40,7 +40,12 @@ public class LikeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", "success");
     	map.put("likedto", likeService.getView(dto));
-    	map.put("like_cnt", freeboardService.getView(Long.parseLong(dto.getFree_seq())).getLike_cnt());
+    	
+    	//Long.parseLong(dto.getFree_seq())).getLike_cnt()
+    	FreeBoardDto fDto = new FreeBoardDto();
+    	fDto.setFree_seq(Long.parseLong(dto.getFree_seq()));
+    	fDto.setUser_seq(dto.getUser_seq());
+    	map.put("dto", freeboardService.getView(fDto));
 
 		return map;
 	}
@@ -55,7 +60,11 @@ public class LikeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", "success");
     	map.put("likedto", likeService.getView(dto));
-    	map.put("like_cnt", freeboardService.getView(Long.parseLong(dto.getFree_seq())).getLike_cnt());
+    	
+    	FreeBoardDto fDto = new FreeBoardDto();
+    	fDto.setFree_seq(Long.parseLong(dto.getFree_seq()));
+    	fDto.setUser_seq(dto.getUser_seq());
+    	map.put("dto", freeboardService.getView(fDto));
 
 		return map;
 	}
@@ -65,7 +74,12 @@ public class LikeController {
 	{		
     	Map<String, Object> map = new HashMap<String, Object>();
     	map.put("likedto", likeService.getView(dto));
-    	map.put("like_cnt", freeboardService.getView(Long.parseLong(dto.getFree_seq())).getLike_cnt());
+    	
+    	FreeBoardDto fDto = new FreeBoardDto();
+    	fDto.setFree_seq(Long.parseLong(dto.getFree_seq()));
+    	fDto.setUser_seq(dto.getUser_seq());
+    	
+    	map.put("dto", freeboardService.getView(fDto));
     	map.put("result", "success");
     	
 		return map;

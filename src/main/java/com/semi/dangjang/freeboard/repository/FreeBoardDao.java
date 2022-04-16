@@ -11,7 +11,7 @@ import com.semi.dangjang.freeboard.domain.FreeBoardDto;
 public interface FreeBoardDao {
 	List<FreeBoardDto> getList(FreeBoardDto dto);
 	int getTotalCnt(FreeBoardDto dto);
-	FreeBoardDto getView(long free_seq);
+	FreeBoardDto getView(FreeBoardDto dto);
 	void insert(FreeBoardDto dto);
 	void updateHit(int id);//조회수 증가
 	void update(FreeBoardDto dto);

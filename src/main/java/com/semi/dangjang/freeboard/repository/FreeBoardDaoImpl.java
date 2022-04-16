@@ -36,9 +36,9 @@ public class FreeBoardDaoImpl implements FreeBoardDao{
 
 
 	@Override
-	public FreeBoardDto getView(long free_seq) {
+	public FreeBoardDto getView(FreeBoardDto dto) {
 		
-		return sm.selectOne("FreeBoard.FreeBoard_getView",  free_seq);
+		return sm.selectOne("FreeBoard.FreeBoard_getView",  dto);
 	}
 
 

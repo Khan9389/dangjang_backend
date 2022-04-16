@@ -71,13 +71,14 @@
 		(#{title}, #{userid}, #{content}, now(), #{image}, #{user_seq})
 	</insert>
 	
-	<select id="FreeBoard_getView"  parameterType="Long"  resultType="FreeBoardDto">
+	<select id="FreeBoard_getView"  parameterType="FreeBoardDto"  resultType="FreeBoardDto">
  		select
 			A.free_seq
 			,A.title
 			,A.content
 			,(select userid from member B where B.userid = A.userid) as userid 
 			,A.wdate
+			, case when A.free_seq in (select free_seq from `like` B where user_seq = #{user_seq}) then '1' else '0' end as click
 			,A.image
 		from freeboard A where free_seq=#{free_seq}
 
