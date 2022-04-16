@@ -51,13 +51,13 @@ public class FreeBoardController {
 	
 	
 	@RequestMapping("/freeboard/view/{free_seq}")
-	HashMap<String, Object> getView(@PathVariable("free_seq")long free_seq)
+	HashMap<String, Object> getView(@PathVariable("free_seq")long free_seq, FreeBoardDto dto)
 	{	
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		FBCommentDto cdto = new FBCommentDto(); 
 		cdto.setFree_seq(free_seq+"");
 		map.put("commentList", freeboardService.fbcommentList(cdto));
-		map.put("dto",freeboardService.getView(free_seq));
+		map.put("dto",freeboardService.getView(dto));
 		
 		return map;
 	}
