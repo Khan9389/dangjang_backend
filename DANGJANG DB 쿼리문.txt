@@ -46,7 +46,7 @@ CREATE TABLE `member` (
   `role` varchar(10) DEFAULT NULL,
   `wdate` datetime DEFAULT NULL,
   PRIMARY KEY (`user_seq`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /* 찜 테이블 생성 쿼리문*/
 CREATE TABLE `zzim` (
@@ -80,7 +80,7 @@ CREATE TABLE `qna_category` (
 /*Q&A 테이블 생성 쿼리문*/
 CREATE TABLE `qna` (
   `QNA_SEQ` int NOT NULL AUTO_INCREMENT,
-  `USER_SEQ` int NOT NULL,
+  `USER_SEQ` bigint NOT NULL,
   `TITLE` varchar(50) NOT NULL,
   `CONTENT` longtext NOT NULL,
   `WDATE` date DEFAULT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE `qna` (
   KEY `USER_SEQ` (`USER_SEQ`),
   KEY `qna_cate_idx` (`category_code`),
   CONSTRAINT `qna_cate` FOREIGN KEY (`category_code`) REFERENCES `qna_category` (`category_code`),
-  CONSTRAINT `qna_ibfk_1` FOREIGN KEY (`USER_SEQ`) REFERENCES `user` (`USER_SEQ`)
+  CONSTRAINT `qna_ibfk_1` FOREIGN KEY (`USER_SEQ`) REFERENCES `member` (`USER_SEQ`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*like 테이블 생성 쿼리문*/
