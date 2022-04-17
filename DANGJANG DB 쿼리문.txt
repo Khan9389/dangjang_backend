@@ -94,6 +94,16 @@ CREATE TABLE `qna` (
   CONSTRAINT `qna_ibfk_1` FOREIGN KEY (`USER_SEQ`) REFERENCES `member` (`USER_SEQ`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+/*Q&A 댓글 테이블 생성 쿼리문*/
+create table qna_comment(
+    qnaco_seq int primary key auto_increment,
+    user_seq bigint not null,
+    qna_seq int,
+    content longtext,
+    wdate datetime,
+    FOREIGN KEY (user_seq) REFERENCES member (user_seq),
+    FOREIGN KEY (qna_seq) REFERENCES qna (qna_seq));
+
 /*like 테이블 생성 쿼리문*/
 CREATE TABLE `like` (
   `USER_SEQ` bigint NOT NULL,
