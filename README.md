@@ -27,19 +27,25 @@
 
 
 # 실행화면
+
 - 메인페이지
+
 ![image](https://user-images.githubusercontent.com/95205529/165308501-076cae72-2903-439d-aced-150455ff637f.png)
 
 - 마켓페이지
+
 ![image](https://user-images.githubusercontent.com/95205529/165308570-48b0c069-0090-46cb-96de-a8781f613b8f.png)
 
 - 게시글 작성페이지
+
 ![image](https://user-images.githubusercontent.com/95205529/165308683-9e10445c-2d1a-420b-8e98-48efd8545bbd.png)
 
 - 게시글 상세보기 페이지
+
 ![image](https://user-images.githubusercontent.com/95205529/165308725-8806b60c-8914-4a36-b8f7-1f9f46e4daba.png)
 
 - 내가 쓴 게시글 목록 페이지
+
 ![image](https://user-images.githubusercontent.com/95205529/165308820-866d38f3-ed47-49e5-a866-b40bd7c47cfb.png)
 
 # 작업기록
