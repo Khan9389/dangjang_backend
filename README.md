@@ -1,7 +1,54 @@
 # 당장마켓
 
+
 ### 신나고 즐거운 중고거래 생활
 
+
+# 설명
+교육과정에서 배운 React와 스프링 부트를 기반으로 해당 사이트들을 분석하여
+구현해보고싶은 기능들을 벤치마킹하여 프로젝트에 구현하였다
+
+## 사용기술 : 
+    - FRONT : React, React-Router-Dom, Axios, HTML5, CSS3, Javascript, Visual Studio Code
+    - COMMON : Spring Tool Suite 4
+    - BACK : MySQL 8.028, JSTL 1.2, AJAX, Spring Security, Node.js, MyBatis 3.4.6, JAVA 11
+    
+## 프로젝트 기간 : 2022-03-21 ~ 2022-04-15
+    - 리스트 무한스크롤 구현
+    - 다중 이미지 파일 업로드 기능 구현
+    - DROPZONE (이미지 끌어다 올리기) 기능 구현
+    - 썸네일 기능 구현
+    - 스프링 시큐리티 사용하여 암호화
+    - 주소 api를 사용하여 회원가입시 실제 주소 입력
+    
+    
+# ERD
+![image](https://user-images.githubusercontent.com/95205529/165308411-201d5ee5-1828-45bf-80b2-d4c8f1996719.png)
+
+
+# 실행화면
+
+- 메인페이지
+
+![image](https://user-images.githubusercontent.com/95205529/165308501-076cae72-2903-439d-aced-150455ff637f.png)
+
+- 마켓페이지
+
+![image](https://user-images.githubusercontent.com/95205529/165308570-48b0c069-0090-46cb-96de-a8781f613b8f.png)
+
+- 게시글 작성페이지
+
+![image](https://user-images.githubusercontent.com/95205529/165308683-9e10445c-2d1a-420b-8e98-48efd8545bbd.png)
+
+- 게시글 상세보기 페이지
+
+![image](https://user-images.githubusercontent.com/95205529/165308725-8806b60c-8914-4a36-b8f7-1f9f46e4daba.png)
+
+- 내가 쓴 게시글 목록 페이지
+
+![image](https://user-images.githubusercontent.com/95205529/165308820-866d38f3-ed47-49e5-a866-b40bd7c47cfb.png)
+
+# 작업기록
 - 여러분 형식을 정해서 리드미 파일에 기록을 남기는게 어떨까요
 
 - [용환] .gitignore 추가(깃 크라켄에 잡다한 파일 stage되지 않게 수정) 22-03-29
@@ -20,11 +67,8 @@
     board.xml 수정
 
 - [정진] search package 작성(22.03.31 PM 3:50)
-  
     SearchController list 작성
-    
     search.xml 작성 및 수정, (팀원들의 검토 필요해요!)
-=======
 
 - [혁주] 당장마켓 파일업로드 경로수정 #19 (22.03.30)
     application.properties 를 통한 파일업로드 경로 수정  
